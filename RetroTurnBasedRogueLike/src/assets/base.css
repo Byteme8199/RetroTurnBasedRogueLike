@@ -1,0 +1,90 @@
+body {
+  background: black;
+  padding: 0px;
+  margin: 0px;
+  color: rgb(155, 154, 236);
+}
+
+.sharp {
+  image-rendering: pixelated;
+}
+
+/* FRONT ROW */
+
+.pos1 {
+  filter: drop-shadow(1px 1px 0 rgba(255,0,0,0.5))
+  drop-shadow(-1px 1px 0 rgba(255,0,0,0.5))
+  drop-shadow(1px -1px 0 rgba(255,0,0,0.5))
+  drop-shadow(-1px -1px 0 rgba(255,0,0,0.5));
+}
+
+.pos3 {
+  filter: drop-shadow(1px 1px 0 rgba(0,255,0,0.5))
+  drop-shadow(-1px 1px 0 rgba(0,255,0,0.5))
+  drop-shadow(1px -1px 0 rgba(0,255,0,0.5))
+  drop-shadow(-1px -1px 0 rgba(0,255,0,0.5));
+}
+
+.pos5 {
+  filter: drop-shadow(1px 1px 0 rgba(0,0,255,0.5))
+  drop-shadow(-1px 1px 0 rgba(0,0,255,0.5))
+  drop-shadow(1px -1px 0 rgba(0,0,255,0.5))
+  drop-shadow(-1px -1px 0 rgba(0,0,255,0.5));
+}
+
+.pos7 {
+  filter: drop-shadow(1px 1px 0 rgba(255,255,0,0.75))
+  drop-shadow(-1px 1px 0 rgba(255,255,0,0.75))
+  drop-shadow(1px -1px 0 rgba(255,255,0,0.75))
+  drop-shadow(-1px -1px 0 rgba(255,255,0,0.75));
+}
+
+
+
+/* BACK ROW */
+
+.pos0 {
+  filter: drop-shadow(1px 1px 0 rgba(0,255,255,0.75))
+  drop-shadow(-1px 1px 0 rgba(0,255,255,0.75))
+  drop-shadow(1px -1px 0 rgba(0,255,255,0.75))
+  drop-shadow(-1px -1px 0 rgba(0,255,255,0.75));
+}
+
+.pos2 {
+  filter: drop-shadow(1px 1px 0 rgba(255,0,255,0.75))
+  drop-shadow(-1px 1px 0 rgba(255,0,255,0.75))
+  drop-shadow(1px -1px 0 rgba(255,0,255,0.75))
+  drop-shadow(-1px -1px 0 rgba(255,0,255,0.75));
+}
+
+.pos4 {
+  filter: drop-shadow(1px 1px 0 rgba(255,255,0,0.75))
+  drop-shadow(-1px 1px 0 rgba(255,255,255,0.75))
+  drop-shadow(1px -1px 0 rgba(255,255,255,0.75))
+  drop-shadow(-1px -1px 0 rgba(255,255,255,0.75));
+}
+
+.pos6 {
+  filter: drop-shadow(1px 1px 0 rgba(50,125,255,1))
+  drop-shadow(-1px 1px 0 rgba(50,125,255,1))
+  drop-shadow(1px -1px 0 rgba(50,125,255,1))
+  drop-shadow(-1px -1px 0 rgba(50,125,255,1));
+}
+
+
+.blink {
+	animation: blink 0.3s 1 alternate;
+}
+
+@keyframes blink {
+  from { filter: brightness(200%); }
+  10% { filter: brightness(100%); }
+  20% { filter: brightness(200%); }
+  30% { filter: brightness(100%); }
+  40% { filter: brightness(200%); }
+  50% { filter: brightness(100%); }
+  60% { filter: brightness(200%); }
+  70% { filter: brightness(100%); }
+  80% { filter: brightness(200%); }
+	to { filter: brightness(100%); }
+}
