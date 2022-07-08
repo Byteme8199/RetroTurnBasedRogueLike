@@ -1,21 +1,22 @@
 <template>
-  <span
+  <div
     class="timelineItem"
     :style="{
       left: left,
-      top: char?.isRecruited ? '5px' : '45px',
+      top: char?.isRecruited ? '3px' : '42px',
     }"
     align="center"
+    v-if="char?.name"
   >
     <font-awesome-icon
       icon="fa-solid fa-location-pin"
-      :size="'2x'"
+      :size="'3x'"
       v-if="char?.isRecruited"
     />
     <font-awesome-icon
       icon="fa-solid fa-location-pin"
       :rotation="180"
-      :size="'2x'"
+      :size="'3x'"
       v-if="!char?.isRecruited"
       :class="{
         blink: char?.nextTurn >= 100,
@@ -38,7 +39,7 @@
       width="16"
       height="16"
     />
-  </span>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -56,19 +57,3 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-.timelineItem {
-  position: absolute;
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 42, 0.45));
-}
-.timeline-portrait {
-  position: absolute;
-  top: 5px;
-  left: 3px;
-}
-.timeline-portrait-enemy {
-  position: absolute;
-  top: 10px;
-  left: 4px;
-}
-</style>
