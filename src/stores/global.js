@@ -1,285 +1,41 @@
 import { defineStore } from "pinia";
+import { characters } from "./characters";
+import { waves } from "./waves";
+import { formations } from "./waves";
 
 export const useGlobalStore = defineStore({
   id: "global",
   state: () => ({
-    characters: [
-      {
-        name: "Locke",
-        isRecruited: true,
-        isBackrow: true,
-        pos: null,
-        nextTurn: 100,
-        speed: 219,
-        phys: 20,
-        mag: 10,
-        level: 1,
-        exp: 0,
-        hpMax: 100,
-        hpCurrent: 0,
-        mpMax: 0,
-        mpCurrent: 0,
-        wpn: null,
-        head: null,
-        armor: null,
-        relic: null,
-        relic2: null,
-        abilities: ["Steal", "Sap", "Exploit"],
-        levelUp: [
-          [1, 1, 3, 1, 100],
-          [2, 1, 4, 2, 250],
-          [3, 2, 5, 3, 600],
-        ],
-      },
-      {
-        name: "Cecil",
-        isRecruited: true,
-        isBackrow: false,
-        pos: 1,
-        nextTurn: 100,
-        speed: 5,
-        phys: 20,
-        mag: 10,
-        level: 1,
-        exp: 0,
-        hpMax: 100,
-        hpCurrent: 100,
-        mpMax: 0,
-        mpCurrent: 0,
-        wpn: null,
-        head: null,
-        armor: null,
-        relic: null,
-        relic2: null,
-        abilities: ["Rage", "Darkness"],
-        levelUp: [
-          [1, 1, 3, 1, 100],
-          [2, 1, 4, 2, 250],
-          [3, 2, 5, 3, 600],
-        ],
-      },
-      {
-        name: "Rydia",
-        isRecruited: true,
-        isBackrow: true,
-        pos: null,
-        nextTurn: 100,
-        speed: 3,
-        phys: 2,
-        mag: 30,
-        level: 1,
-        exp: 0,
-        hpMax: 60,
-        hpCurrent: 60,
-        mpMax: 100,
-        mpCurrent: 100,
-        wpn: null,
-        head: null,
-        armor: null,
-        relic: null,
-        relic2: null,
-        abilities: ["Summon", "Magic"],
-        levelUp: [
-          [1, 1, 1, 3, 100],
-          [2, 1, 1, 5, 250],
-          [3, 2, 2, 6, 600],
-        ],
-      },
-      {
-        name: "X",
-        isRecruited: true,
-        isBackrow: false,
-        reverse: true,
-        offset: 3,
-        pos: 2,
-        nextTurn: 50,
-        speed: 28,
-        phys: 28,
-        mag: 28,
-        level: 1,
-        exp: 0,
-        hpMax: 60,
-        hpCurrent: 60,
-        mpMax: 100,
-        mpCurrent: 100,
-        wpn: null,
-        head: null,
-        armor: null,
-        relic: null,
-        relic2: null,
-        abilities: ["Examine", "Charge", "Mimetic Wpn"],
-        levelUp: [
-          [1, 1, 1, 3, 100],
-          [2, 1, 1, 5, 250],
-          [3, 2, 2, 6, 600],
-        ],
-      },
-      {
-        name: "Frog",
-        isRecruited: true,
-        isBackrow: true,
-        reverse: false,
-        offset: 3.3,
-        pos: 0,
-        nextTurn: 100,
-        speed: 28,
-        phys: 28,
-        mag: 28,
-        level: 1,
-        exp: 0,
-        hpMax: 60,
-        hpCurrent: 60,
-        mpMax: 100,
-        mpCurrent: 100,
-        wpn: null,
-        head: null,
-        armor: null,
-        relic: null,
-        relic2: null,
-        abilities: ["Jump", "Magic", "Reserve Attk"],
-        levelUp: [
-          [1, 1, 1, 3, 100],
-          [2, 1, 1, 5, 250],
-          [3, 2, 2, 6, 600],
-        ],
-      },
-    ],
-    enemies: [
-      {
-        name: "Goblin",
-        pos: 0,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Bat",
-        pos: 1,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Goblin",
-        pos: 2,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Bat",
-        pos: 3,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Goblin",
-        pos: 4,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Bat",
-        pos: 5,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Goblin",
-        pos: 6,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-      {
-        name: "Bat",
-        pos: 7,
-        nextTurn: 100,
-        speed: 50,
-        phys: 1,
-        mag: 1,
-        level: 1,
-        exp: 2,
-        hpMax: 20,
-        hpCurrent: 20,
-        mpMax: 0,
-        mpCurrent: 0,
-        abilities: ["Fight"],
-      },
-    ],
+    characters: characters,
+    enemies: waves[0].formations[0].enemies,
+    animationTimers: {
+      pos1: null,
+      pos2: null,
+      pos3: null,
+      pos4: null,
+    },
     act: {
       selectedCharacter: null,
-      selectedAction: "Fight",
+      selectedAction: {
+        label: "Fight",
+        hasSub: false,
+        availableTargets: ["1e"],
+      },
     },
     game: {
-      phase: 0,
+      moment: 0,
+      wave: 0,
+      round: 0,
+      waveObj: null,
+      formationObj: null,
       gameState: null,
       timerStateVal: null,
       logs: [{ text: "", level: "Log" }],
     },
   }),
   getters: {
-    getTimerState: (state) => {
-      return state.game.timerStateVal;
+    getMoment: (state) => {
+      return state.game.moment;
     },
     getLogs: (state) => {
       return state.game.logs;
@@ -302,31 +58,24 @@ export const useGlobalStore = defineStore({
     getValidCharacterTargets: (state) => {
       return state.characters.filter((c) => c.hpCurrent > 0 && c.pos !== null);
     },
+    getValidCharactersInReserve: (state) => {
+      return state.characters.filter((c) => c.pos === null);
+    },
     getActiveEnemies: (state) => {
-      let activeEnemyField = [{}, {}, {}, {}, {}, {}, {}, {}];
-      state.enemies.map((c) => {
-        if (c.pos !== null) {
-          activeEnemyField[c.pos] = c;
+      let activeEnemyField = state.enemies.filter((c, index) => {
+        if (c && c.hpCurrent > 0) {
+          c.pos = index;
+          return c;
         }
       });
+      activeEnemyField.filter((c) => c);
       return activeEnemyField;
     },
-    getTimeline: (state) => {
-      let activeField = [{}, {}, {}, {}];
-      state.characters.map((c) => (activeField[c.pos] = c));
-
-      let activeEnemyField = [{}, {}, {}, {}, {}, {}, {}, {}];
-      state.enemies.map((c) => {
-        if (c.pos !== null) {
-          activeEnemyField[c.pos] = c;
-        }
+    getValidEnemyTargets: (state) => {
+      let enemies = state.enemies.filter((c) => c);
+      return enemies.filter((c) => {
+        return c.hpCurrent > 0;
       });
-
-      let timeline = activeField.concat(activeEnemyField);
-      timeline.sort((a, b) => {
-        a.pos - b.pos;
-      });
-      return timeline;
     },
     getActions(state) {
       let actions = [];
@@ -334,9 +83,29 @@ export const useGlobalStore = defineStore({
         actions.push(a);
       });
       if (state.act.selectedCharacter?.abilities) {
-        actions.unshift("Fight");
-        actions.push("Defend");
-        actions.push("Switch");
+        actions.unshift({
+          label: "Fight",
+          hasSub: false,
+          availableTargets: ["1e"],
+        });
+        actions.push({
+          label: "Defend",
+          hasSub: false,
+          availableTargets: [],
+        });
+        actions.push({
+          label: "Change Row",
+          hasSub: false,
+          availableTargets: [],
+        });
+        actions.push({
+          label: "Switch",
+          hasSub: true,
+          availableTargets: [state.characters.filter((c) => c.pos === null)],
+        });
+      }
+      if (state.act.selectedAction === null) {
+        state.act.selectedAction = actions[0];
       }
       return actions;
     },
@@ -347,6 +116,20 @@ export const useGlobalStore = defineStore({
   actions: {
     log(log, type) {
       this.game.logs.unshift({ text: log, level: type });
+    },
+    setEnemies(wave, round) {
+      this.enemies = formations[round].enemies;
+      this.game.wave = wave;
+      this.game.round = round;
+      console.log(this.enemies);
+    },
+    initGame() {
+      this.log("Game Init", "Log");
+      this.start();
+      // TODO: Eventually need a menu screen and some sort of game options and states for loading and whatever.
+      this.getValidCharacterTargets.map((c) => {
+        this.animate(c, "walk_in");
+      });
     },
     start() {
       this.log("Game Start", "Log");
@@ -364,23 +147,103 @@ export const useGlobalStore = defineStore({
     },
     gameOver() {
       this.log("GAME OVER", "Log");
+      this.act.selectedCharacter = null;
+      this.act.selectedAction = null;
+      this.game.wave = 0;
+      this.game.round = 0;
       this.pause();
-      this.nextPhase();
       // TODO: show some kind of info about game over
       // TODO: reset HP/MP/Speed?  Anything else?
     },
-    nextPhase() {
-      this.game.phase++;
-      this.log("Next Phase Start", "Log");
+    nextWave() {
+      this.setEnemies(this.game.wave + 1, 0);
+      this.log("Next Wave Start", "Log");
     },
+    nextRound() {
+      this.setEnemies(this.game.wave, this.game.round + 1);
+      this.log("Next Round Start", "Log");
+    },
+    stopAnimate(pos) {
+      clearInterval(this.animationTimers["pos" + pos]);
+    },
+    getAnimationByName(char, name) {
+      const index = char.animations.findIndex((anim) => {
+        return anim.name === name;
+      });
+      return char.animations[index].frames;
+    },
+    animate(char, anim_name) {
+      let anim = this.getAnimationByName(char, anim_name);
+      this.animateSprite(char, anim);
+    },
+    animateSprite(char, frames) {
+      let index = 0;
+      //const startPosition = `-${frames[0].x}px ${frames[0].y}px`;
+      this.animationTimers["pos" + char.pos] = setInterval(() => {
+        let el = document.getElementById("pos" + char.pos);
+        let fr = frames[index];
+        el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
+        el.style.width = fr.w + "px";
+        el.style.height = fr.h + "px";
+        el.style.right = char.isBackrow ? 10 + fr.xo + "px" : 40 + fr.xo + "px";
+        el.style.top = char?.pos * 20 + 85 + fr.yo + "px";
+        el.style.filter = fr?.filter ? fr.filter : "";
+        if (index < frames.length - 1) {
+          index++;
+        } else {
+          if (fr?.repeat) {
+            index = 0;
+          } else {
+            this.stopAnimate(char.pos);
+          }
+        }
+        // if (position < frames.length) {
+        //   position = position + diff;
+        // } else {
+        //   if (!repeating) {
+        //     position = endPosition;
+        //   } else {
+        //     position = startPosition;
+        //   }
+        // }
+      }, 150);
+    },
+    // animateSprite(position, endPosition, interval, diff, repeating, pos) {
+    //   console.log(position, endPosition, interval, diff, repeating, pos);
+    //   const startPosition = position;
+    //   // this.game.timerStateVal = setInterval(this.updateGame, 100);
+    //   this.animationTimers["pos" + pos] = setInterval(() => {
+    //     document.getElementById(
+    //       "pos" + pos
+    //     ).style.backgroundPosition = `-${position}px 0px`;
+    //     if (position < endPosition) {
+    //       position = position + diff;
+    //     } else {
+    //       if (!repeating) {
+    //         position = endPosition;
+    //       } else {
+    //         position = startPosition;
+    //       }
+    //     }
+    //   }, interval);
+    // },
     updateGame() {
       //  Are all characters dead??
       let allCharactersDead =
         this.getValidCharacterTargets.length > 0 ? false : true;
 
+      let allEnemiesDead = this.getActiveEnemies.length > 0 ? false : true;
+
+      if (allEnemiesDead) {
+        if (this.game.round === waves[this.game.wave].formations.length) {
+          this.nextWave();
+        } else {
+          this.nextRound();
+        }
+      }
+
       if (allCharactersDead) {
-        this.gameover();
-        return false;
+        this.gameOver();
       }
 
       // increment game timer for characters
@@ -404,18 +267,38 @@ export const useGlobalStore = defineStore({
           );
           let target = this.getValidCharacterTargets[rnd];
           this.log(`${c.name} ATTACKS ${target.name}`, "Game");
-          target.hpCurrent = target.hpCurrent - 10;
+
+          // TODO: Create actual math for dodging, blocking, etc.. then animate those things...
+          this.animate(target, "damage");
+          target.hpCurrent =
+            target.hpCurrent - 10 <= 0 ? 0 : target.hpCurrent - 10;
+          if (target.hpCurrent <= 0 && target.state !== "dead") {
+            target.state = "dead";
+            this.animate(target, "death");
+            this.log(`${target.name} Dies!`, "Game");
+          }
+          // If the character gets killed before they act and they are currently selecting, remove options
+          if (
+            this.act.selectedCharacter.name === target.name &&
+            target.hpCurrent <= 0
+          ) {
+            this.act.selectedAction = null;
+            this.act.selectedCharacter = null;
+          }
         }
       });
+
+      this.game.moment++;
     },
     selectCharacter(c) {
       this.act.selectedCharacter = c;
-    },
-    selectAction(a) {
-      this.act.selectedAction = a;
+      this.act.selectedAction = c.abilities[0];
+      // this.animateSprite(0, 150, 100, 50, false, c?.pos);
     },
     selectNextAction() {
-      let current = this.getActions.indexOf(this.act.selectedAction);
+      let current = this.getActions.findIndex(
+        (p) => p.label === this.act.selectedAction.label
+      );
       if (current === this.getActions.length - 1) {
         this.act.selectedAction = this.getActions[0];
       } else {
@@ -423,7 +306,9 @@ export const useGlobalStore = defineStore({
       }
     },
     selectPreviousAction() {
-      let current = this.getActions.indexOf(this.act.selectedAction);
+      let current = this.getActions.findIndex(
+        (p) => p.label === this.act.selectedAction.label
+      );
       if (current === 0) {
         this.act.selectedAction = this.getActions[this.getActions.length - 1];
       } else {
@@ -431,7 +316,36 @@ export const useGlobalStore = defineStore({
       }
     },
     engageAction() {
-      this.log(this.act.selectedAction, "Game");
+      let act = this.act.selectedAction;
+      let char = this.act.selectedCharacter;
+      if (act && char && this.game.gameState && char.hpCurrent > 0) {
+        if (act.label === "Change Row") {
+          char.isBackrow = !char.isBackrow;
+        }
+        if (act.label === "Fight") {
+          // Let's attack a random enemy
+          let rnd = Math.floor(
+            Math.random() * this.getValidEnemyTargets.length
+          );
+          let target = this.getValidEnemyTargets[rnd];
+          target.hpCurrent = Math.floor(
+            target.hpCurrent - physFunc(char, target)
+          );
+          this.animate(char, "fight");
+          this.log(
+            `${char.name} ATTACKS ${target.name} and is at ${target.hpCurrent}`,
+            "Game"
+          );
+        }
+        //  Start the character over again and change the selected Character.
+        char.nextTurn = 100;
+        this.act.selectedCharacter = null;
+        this.act.selectedAction = {
+          label: "Fight",
+          hasSub: false,
+          availableTargets: ["1e"],
+        };
+      }
     },
   },
 });
@@ -443,4 +357,12 @@ function speedFunc(c) {
   let speedReductionSane = speedReduction <= 0.1 ? 0.1 : speedReduction;
   c.nextTurn = c.nextTurn - speedReductionSane - Math.random() / 2;
   c.nextTurn = c.nextTurn.toFixed(2) <= 0 ? 0 : c.nextTurn.toFixed(2);
+}
+
+function physFunc(c) {
+  //  phy damage func.
+  let hpReduction =
+    Math.log(c.phys) * Math.log(255) + (Math.random() * Math.log(c.phys)) / 2;
+  let hpReductionSane = hpReduction <= 1 ? 1 : hpReduction;
+  return hpReductionSane;
 }

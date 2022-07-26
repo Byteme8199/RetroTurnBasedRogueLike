@@ -1,30 +1,35 @@
 <template>
   <div
-    v-if="char?.pos !== null"
-    class="character-sprite"
+    v-if="enemy?.pos !== null"
+    class="enemy-sprite"
     :class="{
-      blink: char?.nextTurn >= 100,
-      pos0: char?.pos === 0,
-      pos1: char?.pos === 1,
-      pos2: char?.pos === 2,
-      pos3: char?.pos === 3,
-      pos4: char?.pos === 4,
-      pos5: char?.pos === 5,
-      pos6: char?.pos === 6,
-      pos7: char?.pos === 7,
+      blink: enemy?.nextTurn >= 100,
+      pos0: enemy?.pos === 0,
+      pos1: enemy?.pos === 1,
+      pos2: enemy?.pos === 2,
+      pos3: enemy?.pos === 3,
+      pos4: enemy?.pos === 4,
+      pos5: enemy?.pos === 5,
+      pos6: enemy?.pos === 6,
+      pos7: enemy?.pos === 7,
     }"
     :style="{
       left:
-        char?.pos % 2
-          ? `${150 + (char?.pos + 1) * 20}px`
-          : `${0 + (char?.pos + 1) * 20}px`,
+        enemy?.pos % 2
+          ? `${150 + (enemy?.pos + 1) * 20}px`
+          : `${0 + (enemy?.pos + 1) * 20}px`,
       top:
-        char?.pos % 2
-          ? (char?.pos / 2 + 1) * 75 + 40 + 'px'
-          : (char?.pos / 2 + 1) * 75 + 130 + 'px',
+        enemy?.pos % 2
+          ? (enemy?.pos / 2 + 1) * 75 + 40 + 'px'
+          : (enemy?.pos / 2 + 1) * 75 + 130 + 'px',
     }"
   >
-    <img :src="`./timelines/${char?.name}.png`" style="zoom: 4" class="sharp" />
+    <img
+      :src="`./timelines/${enemy?.sprite}.png`"
+      style="zoom: 4"
+      class="sharp"
+      :class="enemy?.filter"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -32,13 +37,17 @@ import { defineComponent } from "vue";
 export default defineComponent({
   inheritAttrs: false,
   props: {
-    char: { type: Object },
+    enemy: Object,
+    index: Number,
   },
   methods: {},
 });
 </script>
 <style scoped>
-.character-sprite {
+.enemy-sprite {
   position: absolute;
+}
+.redShift {
+  filter: hue-rotate(80deg);
 }
 </style>

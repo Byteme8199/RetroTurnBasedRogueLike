@@ -3,16 +3,22 @@
     <div class="timeline">
       <span class="timeline-line"></span>
       <timeline-component
-        v-for="(char, index) in game.getTimeline"
+        v-for="(char, index) in game.getActiveCharacters"
+        :key="index"
+        :char="char"
+      />
+      <enemy-timeline-component
+        v-for="(char, index) in game.getActiveEnemies"
         :key="index"
         :char="char"
       />
     </div>
     <div class="battlefield">
       <enemy-component
-        :char="enemy"
+        :enemy="enemy"
         v-for="(enemy, index) in game.getActiveEnemies"
         :key="index"
+        :index="index"
       />
       <character-component
         :char="char"
@@ -30,13 +36,13 @@
     </div>
     <div class="menu">
       <div class="actions">
-        <div v-for="action in game.getActions" :key="action" class="action">
+        <div v-for="action in game.getActions" :key="action.label" class="action">
           <font-awesome-icon
             icon="fas fa-hand-point-right"
             class="pointer"
-            v-if="action === game.getSelectedAction"
+            v-if="action?.label === game.getSelectedAction?.label"
           />
-          {{ action }}
+          {{ action.label }}
         </div>
       </div>
       <div class="characterSelect">
@@ -78,11 +84,12 @@
 
 <script lang="ts">
 import { useKeypress } from "vue3-keypress";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { useGlobalStore } from "../stores/global";
 import CharacterComponent from "../components/CharacterComponent.vue";
 import EnemyComponent from "../components/EnemyComponent.vue";
 import TimelineComponent from "../components/TimelineComponent.vue";
+import EnemyTimelineComponent from "../components/EnemyTimelineComponent.vue";
 import StatusComponent from "../components/StatusComponent.vue";
 
 export default defineComponent({
@@ -90,6 +97,7 @@ export default defineComponent({
     CharacterComponent,
     EnemyComponent,
     TimelineComponent,
+    EnemyTimelineComponent,
     StatusComponent,
   },
   setup() {
@@ -139,7 +147,9 @@ export default defineComponent({
       ],
     });
 
-    game.start();
+    onMounted(() => {
+      game.initGame();
+    });
 
     return {
       game,

@@ -53,6 +53,7 @@ export default defineComponent({
   height: 6px;
   box-shadow: inset 0px 0px 0px 1px white;
   border-radius: 6px;
+  transition: width 1s;
 }
 .blue,
 .hover-blue:hover {

@@ -1,19 +1,16 @@
 <template>
   <div
     v-if="char?.name"
-    class="character-sprite"
+    class="character-sprite sharp"
+    :class="{ flip: char?.reverse }"
+    :id="`pos${char?.pos}`"
     :style="{
-      right: char?.isBackrow ? '20px' : '80px',
-      top: (char?.pos + 1) * 80 + 160 + 'px',
+      right: char?.isBackrow ? '10px' : '40px',
+      top: char?.pos * 20 + 85 + 'px',
+      background: `url(./sprites/${char?.name}/${char?.name}.png)  no-repeat`,
+      zoom: char?.offset ? char?.offset : 4,
     }"
-  >
-    <img
-      :src="`./sprites/${char?.name}/${char?.name}.png`"
-      :class="{ flip: char?.reverse }"
-      :style="{ zoom: char?.offset ? char?.offset : 4 }"
-      class="sharp"
-    />
-  </div>
+  ></div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
