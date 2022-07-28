@@ -25,7 +25,7 @@
     }"
   >
     <img
-      :src="`./timelines/${enemy?.sprite}.png`"
+      :src="`./timelines/${enemy?.sprite.toLowerCase()}.png`"
       style="zoom: 4"
       class="sharp"
       :class="enemy?.filter"

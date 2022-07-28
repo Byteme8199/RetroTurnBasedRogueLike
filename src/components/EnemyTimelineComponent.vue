@@ -26,7 +26,7 @@
     />
     <img
       class="timeline-portrait-enemy"
-      :src="`./timelines/${char?.sprite}.png`"
+      :src="`./timelines/${char?.sprite.toLowerCase()}.png`"
       width="16"
       height="16"
     />
