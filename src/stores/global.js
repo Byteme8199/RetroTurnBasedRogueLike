@@ -8,12 +8,6 @@ export const useGlobalStore = defineStore({
   state: () => ({
     characters: characters,
     enemies: waves[0].formations[0].enemies,
-    animationTimers: {
-      pos1: null,
-      pos2: null,
-      pos3: null,
-      pos4: null,
-    },
     act: {
       selectedCharacter: null,
       selectedAction: {
@@ -121,7 +115,6 @@ export const useGlobalStore = defineStore({
       this.enemies = formations[round].enemies;
       this.game.wave = wave;
       this.game.round = round;
-      console.log(this.enemies);
     },
     initGame() {
       this.log("Game Init", "Log");
@@ -158,13 +151,16 @@ export const useGlobalStore = defineStore({
     nextWave() {
       this.setEnemies(this.game.wave + 1, 0);
       this.log("Next Wave Start", "Log");
+      this.clearInputs();
     },
     nextRound() {
       this.setEnemies(this.game.wave, this.game.round + 1);
       this.log("Next Round Start", "Log");
+      this.clearInputs();
     },
-    stopAnimate(pos) {
-      clearInterval(this.animationTimers["pos" + pos]);
+    clearInputs() {
+      this.act.selectedCharacter = null;
+      this.act.selectedAction = null;
     },
     getAnimationByName(char, name) {
       const index = char.animations.findIndex((anim) => {
@@ -179,7 +175,8 @@ export const useGlobalStore = defineStore({
     animateSprite(char, frames) {
       let index = 0;
       //const startPosition = `-${frames[0].x}px ${frames[0].y}px`;
-      this.animationTimers["pos" + char.pos] = setInterval(() => {
+
+      var anim = setInterval(() => {
         let el = document.getElementById("pos" + char.pos);
         let fr = frames[index];
         el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
@@ -194,18 +191,9 @@ export const useGlobalStore = defineStore({
           if (fr?.repeat) {
             index = 0;
           } else {
-            this.stopAnimate(char.pos);
+            clearInterval(anim);
           }
         }
-        // if (position < frames.length) {
-        //   position = position + diff;
-        // } else {
-        //   if (!repeating) {
-        //     position = endPosition;
-        //   } else {
-        //     position = startPosition;
-        //   }
-        // }
       }, 150);
     },
     // animateSprite(position, endPosition, interval, diff, repeating, pos) {
@@ -269,17 +257,20 @@ export const useGlobalStore = defineStore({
           this.log(`${c.name} ATTACKS ${target.name}`, "Game");
 
           // TODO: Create actual math for dodging, blocking, etc.. then animate those things...
-          this.animate(target, "damage");
           target.hpCurrent =
-            target.hpCurrent - 10 <= 0 ? 0 : target.hpCurrent - 10;
+            target.hpCurrent - 10 <= 0 ? 0 : target.hpCurrent - 1000;
+
           if (target.hpCurrent <= 0 && target.state !== "dead") {
             target.state = "dead";
             this.animate(target, "death");
             this.log(`${target.name} Dies!`, "Game");
+          } else {
+            this.animate(target, "damage");
           }
+
           // If the character gets killed before they act and they are currently selecting, remove options
           if (
-            this.act.selectedCharacter.name === target.name &&
+            this.act.selectedCharacter?.name === target?.name &&
             target.hpCurrent <= 0
           ) {
             this.act.selectedAction = null;
