@@ -4,51 +4,27 @@
       <div class="inputForm">
         <div class="inputRow">
           <label class="niceLabel" ref="X">X</label>
-          <input id="X" class="niceInput" v-model="frame.x" type="number" label="x" />
+          <input id="X" class="niceInput" v-model="frame.x" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="y">Y</label>
-          <input id="y" class="niceInput" v-model="frame.y" type="number" label="y" />
+          <input id="y" class="niceInput" v-model="frame.y" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="Width">Width</label
-          ><input
-            id="Width"
-            class="niceInput"
-            v-model="frame.w"
-            type="number"
-            label="w"
-          />
+          ><input id="Width" class="niceInput" v-model="frame.w" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="height">Height</label
-          ><input
-            id="height"
-            class="niceInput"
-            v-model="frame.h"
-            type="number"
-            label="h"
-          />
+          ><input id="height" class="niceInput" v-model="frame.h" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="XOffset">X-Offset</label
-          ><input
-            id="XOffset"
-            class="niceInput"
-            v-model="frame.xo"
-            type="number"
-            label="xo"
-          />
+          ><input id="XOffset" class="niceInput" v-model="frame.xo" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="YOffset">Y-Offset</label
-          ><input
-            id="YOffset"
-            class="niceInput"
-            v-model="frame.yo"
-            type="number"
-            label="yo"
-          />
+          ><input id="YOffset" class="niceInput" v-model="frame.yo" type="number" />
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="filter">Filter</label
@@ -87,7 +63,7 @@
         <div
           v-if="char?.name"
           class="frame sharp"
-          :class="{ flip: char?.reverse, selected: index === selectedFrame }"
+          :class="{ flip: char?.reverse }"
           :id="`fr${char?.pos}`"
           @click="selectFrame(index)"
           :style="{
@@ -118,6 +94,15 @@
           :id="`pos${char?.pos}`"
         ></div>
       </div>
+      <label class="niceLabel" ref="Speed">Speed</label
+      ><input
+        id="Speed"
+        class="niceInput"
+        v-model="speed"
+        type="number"
+        min="100"
+        max="1000"
+      />
     </div>
   </main>
 </template>
@@ -132,6 +117,7 @@ export default defineComponent({
     const game = useGlobalStore();
     const char = ref(game.characters[0]);
     const selectedFrame = ref(0);
+    const speed = ref(150);
     const frames = ref([]);
     const frame = ref({
       x: 229,
@@ -156,6 +142,7 @@ export default defineComponent({
         data.map((m) => {
           this.frames.push({ ...m });
         });
+        this.framesExpanded();
         this.animateSprite(this.char, this.frames);
       }
     }
@@ -206,7 +193,7 @@ export default defineComponent({
             clearInterval(anim);
           }
         }
-      }, 150);
+      }, this.speed);
     }
 
     return {
@@ -216,6 +203,7 @@ export default defineComponent({
       frames,
       framesExpanded,
       frame,
+      speed,
       saveFrame,
       deleteFrame,
       selectFrame,
