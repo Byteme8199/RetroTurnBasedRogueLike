@@ -88,11 +88,7 @@
     </div>
     <div class="row" v-if="frames.length > 1">
       <div class="frameContainer">
-        <div
-          class="frameview sharp"
-          :class="{ flip: char?.reverse }"
-          :id="`pos${char?.pos}`"
-        ></div>
+        <div class="sharp" :class="{ flip: char?.reverse }" :id="`pos${char?.pos}`"></div>
       </div>
       <label class="niceLabel" ref="Speed">Speed</label
       ><input
