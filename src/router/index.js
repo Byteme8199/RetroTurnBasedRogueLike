@@ -11,7 +11,7 @@ const router = createRouter({
       component: GameView,
     },
     {
-      path: "/RetroTurnBasedRogueLike/anims",
+      path: "/RetroTurnBasedRogueLike/anims/",
       name: "anims",
       component: AnimView,
     },
