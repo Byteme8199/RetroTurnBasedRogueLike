@@ -1,117 +1,167 @@
 <template>
   <div class="anim-bg">
     <div style="padding: 20px; display: flex">
-      <div class="inputForm">
-        <div class="inputRow">
-          <label class="inputLabel" ref="X">X</label>
-          <input id="X" class="inputInput" v-model="frame.x" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="y">Y</label>
-          <input id="y" class="inputInput" v-model="frame.y" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="Width">Width</label
-          ><input id="Width" class="inputInput" v-model="frame.w" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="height">Height</label
-          ><input id="height" class="inputInput" v-model="frame.h" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="XOffset">X-Offset</label
-          ><input id="XOffset" class="inputInput" v-model="frame.xo" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="YOffset">Y-Offset</label
-          ><input id="YOffset" class="inputInput" v-model="frame.yo" type="number" />
-        </div>
-        <div class="inputRow">
-          <label class="inputLabel" ref="filter">Filter</label
-          ><input id="filter" class="inputInput" v-model="frame.filter" />
-        </div>
-        <div class="inputRow">
-          <button class="btn" @click="saveFrame">Add New Frame</button>
+      <div>
+        <div class="inputForm">
+          <div class="inputRow">
+            <label class="inputLabel" ref="X">X</label>
+            <input id="X" class="inputInput" v-model="frame.x" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="y">Y</label>
+            <input id="y" class="inputInput" v-model="frame.y" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="Width">Width</label
+            ><input id="Width" class="inputInput" v-model="frame.w" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="height">Height</label
+            ><input id="height" class="inputInput" v-model="frame.h" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="XOffset">X-Offset</label
+            ><input id="XOffset" class="inputInput" v-model="frame.xo" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="YOffset">Y-Offset</label
+            ><input id="YOffset" class="inputInput" v-model="frame.yo" type="number" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="filter">Filter</label
+            ><input id="filter" class="inputInput" v-model="frame.filter" />
+          </div>
+          <div class="inputRow">
+            <label class="inputLabel" ref="effectAnim">Effect</label>
+            <select id="effectAnim" class="inputInput" v-model="frame.effectAnim">
+              <option value="">- None -</option>
+              <option v-for="effect in effects" :key="effect">
+                {{ effect }}
+              </option>
+            </select>
+          </div>
+          <div class="inputRow" v-if="frame.effectAnim">
+            <label class="inputLabel" ref="effectAnimX">Effect X</label
+            ><input id="effectAnimX" class="inputInput" v-model="frame.effectAnimX" />
+          </div>
+          <div class="inputRow" v-if="frame.effectAnim">
+            <label class="inputLabel" ref="effectAnimY">Effect Y</label
+            ><input id="effectAnimY" class="inputInput" v-model="frame.effectAnimY" />
+          </div>
+
+          <div class="inputRow">
+            <label class="inputLabel" ref="playSound">Sound</label>
+            <select id="playSound" class="inputInput" v-model="frame.playSound">
+              <option value="">- None -</option>
+              <option v-for="sound in sounds" :key="sound">{{ sound }}</option>
+            </select>
+          </div>
+
+          <div class="inputRow">
+            <label class="inputLabel" ref="repeat">Repeat</label
+            ><input
+              type="checkbox"
+              id="repeat"
+              class="inputInput"
+              v-model="frame.repeat"
+            />
+          </div>
+          <div class="inputRow">
+            <button class="btn" @click="saveFrame">Add New Frame</button>
+          </div>
+          <div class="exportContainer">
+            <textarea class="full" v-model="importJSONdata" id="export"></textarea>
+            <button class="btn" @click="importJSON">Import/Overwrite</button>
+          </div>
+          <div class="exportContainer">
+            <div class="flex-center">
+              <label class="inputLabel" ref="Speed">Delay</label
+              ><input
+                id="Speed"
+                class="inputInput"
+                v-model="speed"
+                type="number"
+                min="100"
+                max="1000"
+              />
+              <button class="btn" @click="stopAnim">
+                <font-awesome-icon icon="fa-solid fa-stop" />
+              </button>
+              <button class="btn" @click="playAnim">
+                <font-awesome-icon icon="fa-solid fa-play" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="frameContainer">
+      <div>
+        <div class="frameContainer">
+          <div
+            class="frameview sharp"
+            :class="{ flip: char?.reverse }"
+            :id="`frame${char?.pos}`"
+            :style="{
+              background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
+              zoom: char?.offset ? char?.offset : 4,
+              backgroundPosition: `-${frame.x}px -${frame.y}px`,
+              width: frame.w + 'px',
+              height: frame.h + 'px',
+              right: frame.xo + 20 + 'px',
+              top: frame.yo + 20 + 'px',
+              filter: frame.filter ? frame.filter : '',
+            }"
+          ></div>
+        </div>
         <div
-          class="frameview sharp"
-          :class="{ flip: char?.reverse }"
-          :id="`frame${char?.pos}`"
-          :style="{
-            background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
-            zoom: char?.offset ? char?.offset : 4,
-            backgroundPosition: `-${frame.x}px -${frame.y}px`,
-            width: frame.w + 'px',
-            height: frame.h + 'px',
-            right: frame.xo + 20 + 'px',
-            top: frame.yo + 20 + 'px',
-            filter: frame.filter ? frame.filter : '',
-          }"
-        ></div>
-      </div>
-      <div class="exportContainer">
-        <textarea class="full" v-model="importJSONdata" id="export"></textarea>
-        <button class="btn" @click="importJSON">Import/Overwrite</button>
-      </div>
-    </div>
-    <div class="row" style="display: flex; width: 100%; overflow: auto">
-      <div v-for="(f, index) in frames" :key="index">
-        <div
-          v-if="char?.name"
-          class="frame sharp"
-          :class="{ flip: char?.reverse, selected: index === selectedFrame }"
-          :id="`fr${char?.pos}`"
-          @click="selectFrame(index)"
-          :style="{
-            marginRight: f?.xo + 'px',
-            marginTop: f?.yo + 'px',
-            background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
-            zoom: char?.offset ? char?.offset : 4,
-            backgroundPosition: `-${f?.x}px -${f?.y}px`,
-            width: f?.w + 'px',
-            height: f?.h + 'px',
-            filter: f?.filter ? f?.filter : '',
-          }"
-        ></div>
-        <br />
-        <div class="iconBtnContainer">
-          <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameLeft">
-            <font-awesome-icon icon="fa-solid fa-angle-left" class="icon" />
-          </div>
-          <div v-if="index === selectedFrame" class="iconBtn" @click="deleteFrame">
-            <font-awesome-icon icon="fa-solid fa-trash" class="icon" />
-          </div>
-          <div v-if="index === selectedFrame" class="iconBtn" @click="copyFrame">
-            <font-awesome-icon icon="fa-solid fa-copy" class="icon" />
-          </div>
-          <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameRight">
-            <font-awesome-icon icon="fa-solid fa-angle-right" class="icon" />
+          class="frameContainer"
+          style="overflow-x: auto; display: flex; padding: 0px 10px"
+        >
+          <div v-for="(f, index) in frames" :key="index">
+            <div
+              class="frame sharp"
+              :class="{
+                flip: char?.reverse,
+                selected: index === selectedFrame,
+              }"
+              :id="`fr${char?.pos}`"
+              @click="selectFrame(index)"
+              :style="{
+                marginRight: f?.xo + 'px',
+                marginTop: f?.yo + 'px',
+                background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
+                zoom: char?.offset ? char?.offset : 4,
+                backgroundPosition: `-${f?.x}px -${f?.y}px`,
+                width: f?.w + 'px',
+                height: f?.h + 'px',
+                filter: f?.filter ? f?.filter : '',
+              }"
+            ></div>
+            <br />
+            <div class="iconBtnContainer">
+              <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameLeft">
+                <font-awesome-icon icon="fa-solid fa-angle-left" class="icon" />
+              </div>
+              <div v-if="index === selectedFrame" class="iconBtn" @click="deleteFrame">
+                <font-awesome-icon icon="fa-solid fa-trash" class="icon" />
+              </div>
+              <div v-if="index === selectedFrame" class="iconBtn" @click="copyFrame">
+                <font-awesome-icon icon="fa-solid fa-copy" class="icon" />
+              </div>
+              <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameRight">
+                <font-awesome-icon icon="fa-solid fa-angle-right" class="icon" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row" v-if="frames.length > 1">
-      <div class="frameContainer">
-        <div class="sharp" :class="{ flip: char?.reverse }" :id="`pos${char?.pos}`"></div>
-      </div>
-      <div class="inputForm flex-center">
-        <label class="inputLabel" ref="Speed">Delay</label
-        ><input
-          id="Speed"
-          class="inputInput"
-          v-model="speed"
-          type="number"
-          min="100"
-          max="1000"
-        />
-        <button class="btn" @click="stopAnim">
-          <font-awesome-icon icon="fa-solid fa-stop" />
-        </button>
-        <button class="btn" @click="playAnim">
-          <font-awesome-icon icon="fa-solid fa-play" />
-        </button>
+        <div>
+          <div class="frameContainer">
+            <div
+              class="sharp"
+              :class="{ flip: char?.reverse }"
+              :id="`pos${char?.pos}`"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -138,8 +188,14 @@ export default defineComponent({
       yo: 0,
       filter: null,
       repeat: true,
+      effectAnim: null,
+      effectAnimX: null,
+      effectAnimY: null,
+      playSound: null,
     });
     const importJSONdata = ref("");
+    const sounds = ref(["frog_jump", "frog_slash"]);
+    const effects = ref(["magic_water_heal"]);
 
     const anim = ref("");
 
@@ -260,6 +316,8 @@ export default defineComponent({
       importJSONdata,
       playAnim,
       stopAnim,
+      sounds,
+      effects,
     };
   },
 });
@@ -270,22 +328,22 @@ export default defineComponent({
   position: "absolute";
 }
 .frameContainer {
-  width: 600px;
+  width: 1220px;
   height: 243px;
-  border: 2px solid white;
+  border-top: 2px solid white;
   position: relative;
 }
-
 .exportContainer {
-  width: 600px;
-  height: 243px;
-  border: 2px solid white;
+  width: 290px;
+  height: 200px;
   position: relative;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding-top: 15px;
 }
 .full {
   width: 100%;
-  height: 100%;
-  color: black;
+  height: 120px;
 }
 .selected {
   border: 1px solid black;
@@ -294,8 +352,8 @@ export default defineComponent({
   padding: 15px;
   border: 3px solid white;
   border-radius: 5px;
-  max-width: 170px;
-  background-color: darkgrey;
+  width: 300px;
+  background-color: midnightblue;
 }
 .inputRow {
   display: flex;
@@ -310,39 +368,32 @@ export default defineComponent({
 .inputInput {
   border-radius: 4px;
   margin: 3px;
-  max-width: 50px;
+  max-width: 200px;
 }
 .frameview {
   border: 1px solid black;
   position: absolute;
 }
-
-.row {
-  width: 100%;
+.flex-left {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  border-top: 1px solid black;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .iconBtnContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .iconBtn {
-  display: inline;
+  margin-right: 10px;
 }
 
 .iconBtn .icon {
   font-size: 14px;
+}
+
+.btn {
+  margin: 8px 0px;
 }
 </style>
