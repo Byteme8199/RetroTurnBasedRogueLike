@@ -11,12 +11,26 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
-import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleRight,
+  faAngleLeft,
+  faCopy,
+  faTrash,
+  faHandPointRight,
+  faLocationPin,
+  faPlay,
+  faStop,
+} from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
 library.add(faLocationPin);
 library.add(faHandPointRight);
+library.add(faTrash);
+library.add(faCopy);
+library.add(faAngleLeft);
+library.add(faAngleRight);
+library.add(faPlay);
+library.add(faStop);
 
 const app = createApp(App);
 

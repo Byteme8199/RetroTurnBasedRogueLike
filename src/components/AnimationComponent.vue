@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="anim-bg">
     <div style="padding: 20px; display: flex">
       <div class="inputForm">
         <div class="inputRow">
@@ -28,7 +28,7 @@
         </div>
         <div class="inputRow">
           <label class="niceLabel" ref="filter">Filter</label
-          ><input id="filter" class="niceInput" v-model="frame.filter" label="filter" />
+          ><input id="filter" class="niceInput" v-model="frame.filter" />
         </div>
         <div class="inputRow">
           <button class="niceButton" @click="saveFrame" v-if="!selectedFrame">
@@ -63,7 +63,7 @@
         <div
           v-if="char?.name"
           class="frame sharp"
-          :class="{ flip: char?.reverse }"
+          :class="{ flip: char?.reverse, selected: index === selectedFrame }"
           :id="`fr${char?.pos}`"
           @click="selectFrame(index)"
           :style="{
@@ -78,11 +78,17 @@
           }"
         ></div>
         <br />
+        <button v-if="index === selectedFrame" class="niceButton" @click="moveFrameLeft">
+          <font-awesome-icon icon="fa-solid fa-angle-left" />
+        </button>
         <button v-if="index === selectedFrame" class="niceButton" @click="deleteFrame">
-          Delete
+          <font-awesome-icon icon="fa-solid fa-trash" />
         </button>
         <button v-if="index === selectedFrame" class="niceButton" @click="copyFrame">
-          Copy
+          <font-awesome-icon icon="fa-solid fa-copy" />
+        </button>
+        <button v-if="index === selectedFrame" class="niceButton" @click="moveFrameRight">
+          <font-awesome-icon icon="fa-solid fa-angle-right" />
         </button>
       </div>
     </div>
@@ -99,8 +105,14 @@
         min="100"
         max="1000"
       />
+      <button class="niceButton" @click="stopAnim">
+        <font-awesome-icon icon="fa-solid fa-stop" />
+      </button>
+      <button class="niceButton" @click="playAnim">
+        <font-awesome-icon icon="fa-solid fa-play" />
+      </button>
     </div>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -127,6 +139,8 @@ export default defineComponent({
     });
     const importJSONdata = ref("");
 
+    let anim = "";
+
     function framesExpanded() {
       this.importJSONdata = JSON.stringify(this.frames);
     }
@@ -139,13 +153,19 @@ export default defineComponent({
           this.frames.push({ ...m });
         });
         this.framesExpanded();
-        this.animateSprite(this.char, this.frames);
       }
+    }
+
+    function playAnim() {
+      this.animateSprite(this.char, this.frames);
+    }
+
+    function stopAnim() {
+      clearInterval(this.anim);
     }
 
     function saveFrame() {
       this.frames.push({ ...this.frame });
-      this.animateSprite(this.char, this.frames);
       this.framesExpanded();
     }
 
@@ -159,6 +179,27 @@ export default defineComponent({
       this.framesExpanded();
     }
 
+    function moveFrameLeft() {
+      let rightFrame = this.selectedFrame - 1 <= 0 ? 0 : this.selectedFrame - 1;
+      arraymove(this.frames, this.selectedFrame, rightFrame);
+      this.selectedFrame = rightFrame;
+    }
+
+    function moveFrameRight() {
+      let rightFrame =
+        this.selectedFrame + 1 >= this.frames.length
+          ? this.frames.length
+          : this.selectedFrame + 1;
+      arraymove(this.frames, this.selectedFrame, rightFrame);
+      this.selectedFrame = rightFrame;
+    }
+
+    function arraymove(arr, fromIndex, toIndex) {
+      var element = arr[fromIndex];
+      arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, element);
+    }
+
     function selectFrame(index) {
       this.selectedFrame = index;
       this.frame = this.frames[index];
@@ -167,7 +208,7 @@ export default defineComponent({
 
     function animateSprite(char, frames) {
       let index = 0;
-      var anim = setInterval(() => {
+      this.anim = setInterval(() => {
         let el = document.getElementById("pos" + char.pos);
         let fr = frames[index];
         if (el) {
@@ -179,6 +220,7 @@ export default defineComponent({
           el.style.right = fr.xo + 20 + "px";
           el.style.top = fr.yo + 20 + "px";
           el.style.filter = fr?.filter ? fr.filter : "";
+          el.style.position = "absolute";
         }
         if (index < frames.length - 1) {
           index++;
@@ -186,7 +228,7 @@ export default defineComponent({
           if (fr?.repeat) {
             index = 0;
           } else {
-            clearInterval(anim);
+            clearInterval(this.anim);
           }
         }
       }, this.speed);
@@ -203,16 +245,23 @@ export default defineComponent({
       saveFrame,
       deleteFrame,
       selectFrame,
+      moveFrameRight,
+      moveFrameLeft,
       copyFrame,
       animateSprite,
       importJSON,
       importJSONdata,
+      playAnim,
+      stopAnim,
     };
   },
 });
 </script>
 
 <style scoped>
+.abs {
+  position: "absolute";
+}
 .frameContainer {
   width: 600px;
   height: 243px;
@@ -256,11 +305,6 @@ export default defineComponent({
   margin: 3px;
   max-width: 50px;
 }
-main {
-  background-color: lightgray;
-  margin: 20px;
-}
-
 .frameview {
   border: 1px solid black;
   position: absolute;

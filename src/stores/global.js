@@ -17,6 +17,7 @@ export const useGlobalStore = defineStore({
       },
     },
     game: {
+      mode: "game",
       moment: 0,
       wave: 0,
       round: 0,
@@ -33,6 +34,9 @@ export const useGlobalStore = defineStore({
     },
     getLogs: (state) => {
       return state.game.logs;
+    },
+    getMode: (state) => {
+      return state.game.mode;
     },
     getCharacter(name) {
       this.characters.filter((c) => {
@@ -116,8 +120,21 @@ export const useGlobalStore = defineStore({
       this.game.wave = wave;
       this.game.round = round;
     },
+    setModeAnim() {
+      console.log("Animation Mode Start");
+      this.log("Animation Mode Start", "Log");
+      this.game.mode = "anim";
+      this.pause();
+    },
+    setModeGame() {
+      console.log("Game Mode Start");
+      this.log("Game Mode Start", "Log");
+      this.game.mode = "game";
+      this.initGame();
+    },
     initGame() {
       this.log("Game Init", "Log");
+      this.reset();
       this.start();
       // TODO: Eventually need a menu screen and some sort of game options and states for loading and whatever.
       this.getValidCharacterTargets.map((c) => {
@@ -128,6 +145,25 @@ export const useGlobalStore = defineStore({
       this.log("Game Start", "Log");
       this.game.gameState = true;
       this.game.timerStateVal = setInterval(this.updateGame, 100);
+    },
+    reset() {
+      // Get a reference to the last interval + 1
+      const interval_id = window.setInterval(function () {},
+      Number.MAX_SAFE_INTEGER);
+
+      // Clear any timeout/interval up to that id
+      for (let i = 1; i < interval_id; i++) {
+        window.clearInterval(i);
+      }
+
+      this.getValidCharacterTargets.map((c) => {
+        c.nextTurn = 100;
+      });
+
+      // go over each enemy, if nextTurn === 0, then have them do stuff
+      this.getActiveEnemies.map((c) => {
+        c.nextTurn = 100;
+      });
     },
     pause() {
       if (this.game.gameState) {

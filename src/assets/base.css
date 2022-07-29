@@ -139,6 +139,7 @@ main {
   overflow: hidden;
   border-radius: 20px;
   border: 3px solid white;
+  background: linear-gradient(0deg, rgba(0, 0, 42, 1) 0%, rgba(110, 108, 202, 1) 100%);
 }
 
 .redText {
