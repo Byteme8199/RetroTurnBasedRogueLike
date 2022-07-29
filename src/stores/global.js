@@ -124,7 +124,7 @@ export const useGlobalStore = defineStore({
       console.log("Animation Mode Start");
       this.log("Animation Mode Start", "Log");
       this.game.mode = "anim";
-      this.pause();
+      this.reset();
     },
     setModeGame() {
       console.log("Game Mode Start");

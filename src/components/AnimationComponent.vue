@@ -3,37 +3,35 @@
     <div style="padding: 20px; display: flex">
       <div class="inputForm">
         <div class="inputRow">
-          <label class="niceLabel" ref="X">X</label>
-          <input id="X" class="niceInput" v-model="frame.x" type="number" />
+          <label class="inputLabel" ref="X">X</label>
+          <input id="X" class="inputInput" v-model="frame.x" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="y">Y</label>
-          <input id="y" class="niceInput" v-model="frame.y" type="number" />
+          <label class="inputLabel" ref="y">Y</label>
+          <input id="y" class="inputInput" v-model="frame.y" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="Width">Width</label
-          ><input id="Width" class="niceInput" v-model="frame.w" type="number" />
+          <label class="inputLabel" ref="Width">Width</label
+          ><input id="Width" class="inputInput" v-model="frame.w" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="height">Height</label
-          ><input id="height" class="niceInput" v-model="frame.h" type="number" />
+          <label class="inputLabel" ref="height">Height</label
+          ><input id="height" class="inputInput" v-model="frame.h" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="XOffset">X-Offset</label
-          ><input id="XOffset" class="niceInput" v-model="frame.xo" type="number" />
+          <label class="inputLabel" ref="XOffset">X-Offset</label
+          ><input id="XOffset" class="inputInput" v-model="frame.xo" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="YOffset">Y-Offset</label
-          ><input id="YOffset" class="niceInput" v-model="frame.yo" type="number" />
+          <label class="inputLabel" ref="YOffset">Y-Offset</label
+          ><input id="YOffset" class="inputInput" v-model="frame.yo" type="number" />
         </div>
         <div class="inputRow">
-          <label class="niceLabel" ref="filter">Filter</label
-          ><input id="filter" class="niceInput" v-model="frame.filter" />
+          <label class="inputLabel" ref="filter">Filter</label
+          ><input id="filter" class="inputInput" v-model="frame.filter" />
         </div>
         <div class="inputRow">
-          <button class="niceButton" @click="saveFrame" v-if="!selectedFrame">
-            Add New Frame
-          </button>
+          <button class="btn" @click="saveFrame">Add New Frame</button>
         </div>
       </div>
       <div class="frameContainer">
@@ -55,11 +53,11 @@
       </div>
       <div class="exportContainer">
         <textarea class="full" v-model="importJSONdata" id="export"></textarea>
-        <button class="niceButton" @click="importJSON">Import/Overwrite</button>
+        <button class="btn" @click="importJSON">Import/Overwrite</button>
       </div>
     </div>
-    <div class="row" style="display: flex">
-      <div v-for="(newFrame, index) in frames" :key="index">
+    <div class="row" style="display: flex; width: 100%; overflow: auto">
+      <div v-for="(f, index) in frames" :key="index">
         <div
           v-if="char?.name"
           class="frame sharp"
@@ -67,50 +65,54 @@
           :id="`fr${char?.pos}`"
           @click="selectFrame(index)"
           :style="{
-            marginRight: newFrame.xo + 'px',
-            marginTop: newFrame.yo + 'px',
+            marginRight: f?.xo + 'px',
+            marginTop: f?.yo + 'px',
             background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
             zoom: char?.offset ? char?.offset : 4,
-            backgroundPosition: `-${newFrame.x}px -${newFrame.y}px`,
-            width: newFrame.w + 'px',
-            height: newFrame.h + 'px',
-            filter: newFrame.filter ? newFrame.filter : '',
+            backgroundPosition: `-${f?.x}px -${f?.y}px`,
+            width: f?.w + 'px',
+            height: f?.h + 'px',
+            filter: f?.filter ? f?.filter : '',
           }"
         ></div>
         <br />
-        <button v-if="index === selectedFrame" class="niceButton" @click="moveFrameLeft">
-          <font-awesome-icon icon="fa-solid fa-angle-left" />
-        </button>
-        <button v-if="index === selectedFrame" class="niceButton" @click="deleteFrame">
-          <font-awesome-icon icon="fa-solid fa-trash" />
-        </button>
-        <button v-if="index === selectedFrame" class="niceButton" @click="copyFrame">
-          <font-awesome-icon icon="fa-solid fa-copy" />
-        </button>
-        <button v-if="index === selectedFrame" class="niceButton" @click="moveFrameRight">
-          <font-awesome-icon icon="fa-solid fa-angle-right" />
-        </button>
+        <div class="iconBtnContainer">
+          <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameLeft">
+            <font-awesome-icon icon="fa-solid fa-angle-left" class="icon" />
+          </div>
+          <div v-if="index === selectedFrame" class="iconBtn" @click="deleteFrame">
+            <font-awesome-icon icon="fa-solid fa-trash" class="icon" />
+          </div>
+          <div v-if="index === selectedFrame" class="iconBtn" @click="copyFrame">
+            <font-awesome-icon icon="fa-solid fa-copy" class="icon" />
+          </div>
+          <div v-if="index === selectedFrame" class="iconBtn" @click="moveFrameRight">
+            <font-awesome-icon icon="fa-solid fa-angle-right" class="icon" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="row" v-if="frames.length > 1">
       <div class="frameContainer">
         <div class="sharp" :class="{ flip: char?.reverse }" :id="`pos${char?.pos}`"></div>
       </div>
-      <label class="niceLabel" ref="Speed">Speed</label
-      ><input
-        id="Speed"
-        class="niceInput"
-        v-model="speed"
-        type="number"
-        min="100"
-        max="1000"
-      />
-      <button class="niceButton" @click="stopAnim">
-        <font-awesome-icon icon="fa-solid fa-stop" />
-      </button>
-      <button class="niceButton" @click="playAnim">
-        <font-awesome-icon icon="fa-solid fa-play" />
-      </button>
+      <div class="inputForm flex-center">
+        <label class="inputLabel" ref="Speed">Delay</label
+        ><input
+          id="Speed"
+          class="inputInput"
+          v-model="speed"
+          type="number"
+          min="100"
+          max="1000"
+        />
+        <button class="btn" @click="stopAnim">
+          <font-awesome-icon icon="fa-solid fa-stop" />
+        </button>
+        <button class="btn" @click="playAnim">
+          <font-awesome-icon icon="fa-solid fa-play" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -139,7 +141,7 @@ export default defineComponent({
     });
     const importJSONdata = ref("");
 
-    let anim = "";
+    const anim = ref("");
 
     function framesExpanded() {
       this.importJSONdata = JSON.stringify(this.frames);
@@ -175,14 +177,16 @@ export default defineComponent({
     }
 
     function copyFrame() {
-      this.frames.push({ ...this.frame });
-      this.framesExpanded();
+      this.frames.splice(this.selectedFrame, 0, {
+        ...this.frames[this.selectedFrame],
+      });
     }
 
     function moveFrameLeft() {
       let rightFrame = this.selectedFrame - 1 <= 0 ? 0 : this.selectedFrame - 1;
-      arraymove(this.frames, this.selectedFrame, rightFrame);
+      arrayMove(this.frames, this.selectedFrame, rightFrame);
       this.selectedFrame = rightFrame;
+      this.framesExpanded();
     }
 
     function moveFrameRight() {
@@ -190,11 +194,12 @@ export default defineComponent({
         this.selectedFrame + 1 >= this.frames.length
           ? this.frames.length
           : this.selectedFrame + 1;
-      arraymove(this.frames, this.selectedFrame, rightFrame);
+      arrayMove(this.frames, this.selectedFrame, rightFrame);
       this.selectedFrame = rightFrame;
+      this.framesExpanded();
     }
 
-    function arraymove(arr, fromIndex, toIndex) {
+    function arrayMove(arr, fromIndex, toIndex) {
       var element = arr[fromIndex];
       arr.splice(fromIndex, 1);
       arr.splice(toIndex, 0, element);
@@ -208,6 +213,7 @@ export default defineComponent({
 
     function animateSprite(char, frames) {
       let index = 0;
+      clearInterval(this.anim);
       this.anim = setInterval(() => {
         let el = document.getElementById("pos" + char.pos);
         let fr = frames[index];
@@ -241,6 +247,7 @@ export default defineComponent({
       frames,
       framesExpanded,
       frame,
+      anim,
       speed,
       saveFrame,
       deleteFrame,
@@ -295,12 +302,12 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
 }
-.niceLabel {
+.inputLabel {
   width: 80px;
   display: block;
   margin-right: 10px;
 }
-.niceInput {
+.inputInput {
   border-radius: 4px;
   margin: 3px;
   max-width: 50px;
@@ -312,9 +319,30 @@ export default defineComponent({
 
 .row {
   width: 100%;
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   border-top: 1px solid black;
   padding: 10px;
   margin-top: 10px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.iconBtn {
+  display: inline;
+}
+
+.iconBtn .icon {
+  font-size: 14px;
 }
 </style>
