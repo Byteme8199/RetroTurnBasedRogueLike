@@ -42,7 +42,7 @@
           :class="{ flip: char?.reverse }"
           :id="`frame${char?.pos}`"
           :style="{
-            background: `url(./sprites/${char?.name}/${char?.name}.png)  no-repeat`,
+            background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
             zoom: char?.offset ? char?.offset : 4,
             backgroundPosition: `-${frame.x}px -${frame.y}px`,
             width: frame.w + 'px',
@@ -69,7 +69,7 @@
           :style="{
             marginRight: newFrame.xo + 'px',
             marginTop: newFrame.yo + 'px',
-            background: `url(./sprites/${char?.name}/${char?.name}.png)  no-repeat`,
+            background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
             zoom: char?.offset ? char?.offset : 4,
             backgroundPosition: `-${newFrame.x}px -${newFrame.y}px`,
             width: newFrame.w + 'px',
@@ -212,7 +212,7 @@ export default defineComponent({
         let el = document.getElementById("pos" + char.pos);
         let fr = frames[index];
         if (el) {
-          el.style.background = `url(./sprites/${char?.name}/${char?.name}.png)  no-repeat`;
+          el.style.background = `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`;
           el.style.zoom = char?.offset ? char?.offset : 4;
           el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
           el.style.width = fr.w + "px";
