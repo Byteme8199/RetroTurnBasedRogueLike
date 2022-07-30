@@ -11,7 +11,7 @@
     <font-awesome-icon icon="fa-solid fa-location-pin" :size="'3x'" />
     <img
       class="timeline-portrait"
-      :src="`./timelines/${char?.name.toLowerCase()}.png`"
+      :src="`./timelines/${char?.fileName}.png`"
       width="16"
       height="16"
     />

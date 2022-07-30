@@ -7,7 +7,7 @@
     :style="{
       right: char?.isBackrow ? '10px' : '40px',
       top: char?.pos * 20 + 85 + 'px',
-      background: `url(./sprites/${char?.name.toLowerCase()}/${char?.name.toLowerCase()}.png)  no-repeat`,
+      background: `url(./sprites/${char?.fileName}/${char?.fileName}.png)  no-repeat`,
       zoom: char?.offset ? char?.offset : 4,
     }"
   ></div>

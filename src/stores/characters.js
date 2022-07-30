@@ -1,6 +1,7 @@
 export let characters = [
   {
     name: "Locke",
+    fileName: "locke",
     isRecruited: true,
     isBackrow: true,
     pos: null,
@@ -32,6 +33,7 @@ export let characters = [
   },
   {
     name: "Cecil",
+    fileName: "cecil",
     isRecruited: true,
     isBackrow: false,
     pos: null,
@@ -62,6 +64,7 @@ export let characters = [
   },
   {
     name: "Rydia",
+    fileName: "rydia",
     isRecruited: true,
     isBackrow: true,
     pos: null,
@@ -92,6 +95,7 @@ export let characters = [
   },
   {
     name: "X",
+    fileName: "x",
     isRecruited: true,
     isBackrow: false,
     reverse: true,
@@ -144,6 +148,7 @@ export let characters = [
   },
   {
     name: "Frog",
+    fileName: "frog",
     isRecruited: true,
     isBackrow: false,
     reverse: false,

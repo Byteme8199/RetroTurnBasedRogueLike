@@ -58,7 +58,7 @@
             <img
               :class="{ disabled: !char?.pos && char?.pos !== 0 }"
               class="sharp"
-              :src="`./timelines/${char?.name.toLowerCase()}.png`"
+              :src="`./timelines/${char?.fileName}.png`"
               width="64"
               height="64"
             />
