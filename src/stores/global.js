@@ -225,6 +225,10 @@ export const useGlobalStore = defineStore({
         el.style.right = char.isBackrow ? 10 + fr.xo + "px" : 40 + fr.xo + "px";
         el.style.top = char?.pos * 20 + 85 + fr.yo + "px";
         el.style.filter = fr?.filter ? fr.filter : "";
+        if (fr.playSound) {
+          var audio = new Audio(`sounds/${fr.playSound}`);
+          audio.play();
+        }
         if (index < frames.length - 1) {
           index++;
         } else {
