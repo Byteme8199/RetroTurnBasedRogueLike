@@ -107,6 +107,9 @@ export const useGlobalStore = defineStore({
       }
       return actions;
     },
+    getSelectedCharacter(state) {
+      return state.act.selectedCharacter;
+    },
     getSelectedAction(state) {
       return state.act.selectedAction;
     },
@@ -199,6 +202,7 @@ export const useGlobalStore = defineStore({
       this.act.selectedAction = null;
     },
     getAnimationByName(char, name) {
+      console.log(name, char.name);
       const index = char.animations.findIndex((anim) => {
         return anim.name === name;
       });
@@ -232,25 +236,6 @@ export const useGlobalStore = defineStore({
         }
       }, 150);
     },
-    // animateSprite(position, endPosition, interval, diff, repeating, pos) {
-    //   console.log(position, endPosition, interval, diff, repeating, pos);
-    //   const startPosition = position;
-    //   // this.game.timerStateVal = setInterval(this.updateGame, 100);
-    //   this.animationTimers["pos" + pos] = setInterval(() => {
-    //     document.getElementById(
-    //       "pos" + pos
-    //     ).style.backgroundPosition = `-${position}px 0px`;
-    //     if (position < endPosition) {
-    //       position = position + diff;
-    //     } else {
-    //       if (!repeating) {
-    //         position = endPosition;
-    //       } else {
-    //         position = startPosition;
-    //       }
-    //     }
-    //   }, interval);
-    // },
     updateGame() {
       //  Are all characters dead??
       let allCharactersDead =
@@ -294,7 +279,7 @@ export const useGlobalStore = defineStore({
 
           // TODO: Create actual math for dodging, blocking, etc.. then animate those things...
           target.hpCurrent =
-            target.hpCurrent - 10 <= 0 ? 0 : target.hpCurrent - 1000;
+            target.hpCurrent - 10 <= 0 ? 0 : target.hpCurrent - 1;
 
           if (target.hpCurrent <= 0 && target.state !== "dead") {
             target.state = "dead";
@@ -364,6 +349,7 @@ export const useGlobalStore = defineStore({
             "Game"
           );
         }
+
         //  Start the character over again and change the selected Character.
         char.nextTurn = 100;
         this.act.selectedCharacter = null;

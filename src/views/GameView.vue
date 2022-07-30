@@ -81,7 +81,6 @@
         </div>
       </div>
     </div>
-
     <div v-if="game.getMode === 'anim'">
       <animation-component />
     </div>

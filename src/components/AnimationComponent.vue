@@ -4,97 +4,109 @@
       <div>
         <div class="inputForm">
           <div class="inputRow">
-            <label class="inputLabel" ref="X">X</label>
-            <input id="X" class="inputInput" v-model="frame.x" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="y">Y</label>
-            <input id="y" class="inputInput" v-model="frame.y" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="Width">Width</label
-            ><input id="Width" class="inputInput" v-model="frame.w" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="height">Height</label
-            ><input id="height" class="inputInput" v-model="frame.h" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="XOffset">X-Offset</label
-            ><input id="XOffset" class="inputInput" v-model="frame.xo" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="YOffset">Y-Offset</label
-            ><input id="YOffset" class="inputInput" v-model="frame.yo" type="number" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="filter">Filter</label
-            ><input id="filter" class="inputInput" v-model="frame.filter" />
-          </div>
-          <div class="inputRow">
-            <label class="inputLabel" ref="effectAnim">Effect</label>
-            <select id="effectAnim" class="inputInput" v-model="frame.effectAnim">
-              <option value="">- None -</option>
-              <option v-for="effect in effects" :key="effect">
-                {{ effect }}
+            <label class="inputLabel" ref="effectAnim">Character</label>
+            <select id="effectAnim" class="inputInput" v-model="char">
+              <option v-for="char in chars" :key="char.name" :value="char">
+                {{ char.name }}
               </option>
             </select>
           </div>
-          <div class="inputRow" v-if="frame.effectAnim">
-            <label class="inputLabel" ref="effectAnimX">Effect X</label
-            ><input id="effectAnimX" class="inputInput" v-model="frame.effectAnimX" />
-          </div>
-          <div class="inputRow" v-if="frame.effectAnim">
-            <label class="inputLabel" ref="effectAnimY">Effect Y</label
-            ><input id="effectAnimY" class="inputInput" v-model="frame.effectAnimY" />
-          </div>
+          <div v-if="char !== null">
+            <div class="inputRow">
+              <label class="inputLabel" ref="X">X</label>
+              <input id="X" class="inputInput" v-model="frame.x" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="y">Y</label>
+              <input id="y" class="inputInput" v-model="frame.y" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="Width">Width</label
+              ><input id="Width" class="inputInput" v-model="frame.w" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="height">Height</label
+              ><input id="height" class="inputInput" v-model="frame.h" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="XOffset">X-Offset</label
+              ><input id="XOffset" class="inputInput" v-model="frame.xo" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="YOffset">Y-Offset</label
+              ><input id="YOffset" class="inputInput" v-model="frame.yo" type="number" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="filter">Filter</label
+              ><input id="filter" class="inputInput" v-model="frame.filter" />
+            </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="effectAnim">Effect</label>
+              <select id="effectAnim" class="inputInput" v-model="frame.effectAnim">
+                <option value="">- None -</option>
+                <option v-for="effect in effects" :key="effect">
+                  {{ effect }}
+                </option>
+              </select>
+            </div>
+            <div class="inputRow" v-if="frame.effectAnim">
+              <label class="inputLabel" ref="effectAnimX">Effect X</label
+              ><input id="effectAnimX" class="inputInput" v-model="frame.effectAnimX" />
+            </div>
+            <div class="inputRow" v-if="frame.effectAnim">
+              <label class="inputLabel" ref="effectAnimY">Effect Y</label
+              ><input id="effectAnimY" class="inputInput" v-model="frame.effectAnimY" />
+            </div>
 
-          <div class="inputRow">
-            <label class="inputLabel" ref="playSound">Sound</label>
-            <select id="playSound" class="inputInput" v-model="frame.playSound">
-              <option value="">- None -</option>
-              <option v-for="sound in sounds" :key="sound">{{ sound }}</option>
-            </select>
-          </div>
+            <div class="inputRow">
+              <label class="inputLabel" ref="playSound">Sound</label>
+              <select id="playSound" class="inputInput" v-model="frame.playSound">
+                <option value="">- None -</option>
+                <option v-for="sound in sounds" :key="sound">
+                  {{ sound }}
+                </option>
+              </select>
+            </div>
 
-          <div class="inputRow">
-            <label class="inputLabel" ref="repeat">Repeat</label
-            ><input
-              type="checkbox"
-              id="repeat"
-              class="inputInput"
-              v-model="frame.repeat"
-            />
-          </div>
-          <div class="inputRow">
-            <button class="btn" @click="saveFrame">Add New Frame</button>
-          </div>
-          <div class="exportContainer">
-            <textarea class="full" v-model="importJSONdata" id="export"></textarea>
-            <button class="btn" @click="importJSON">Import/Overwrite</button>
-          </div>
-          <div class="exportContainer">
-            <div class="flex-center">
-              <label class="inputLabel" ref="Speed">Delay</label
+            <div class="inputRow">
+              <label class="inputLabel" ref="repeat">Repeat</label
               ><input
-                id="Speed"
+                type="checkbox"
+                id="repeat"
                 class="inputInput"
-                v-model="speed"
-                type="number"
-                min="100"
-                max="1000"
+                v-model="frame.repeat"
               />
-              <button class="btn" @click="stopAnim">
-                <font-awesome-icon icon="fa-solid fa-stop" />
-              </button>
-              <button class="btn" @click="playAnim">
-                <font-awesome-icon icon="fa-solid fa-play" />
-              </button>
+            </div>
+            <div class="inputRow">
+              <button class="btn" @click="saveFrame">Add New Frame</button>
+            </div>
+            <div class="exportContainer">
+              <textarea class="full" v-model="importJSONdata" id="export"></textarea>
+              <button class="btn" @click="importJSON">Import/Overwrite</button>
+            </div>
+            <div class="exportContainer">
+              <div class="flex-center">
+                <label class="inputLabel" ref="Speed">Delay</label
+                ><input
+                  id="Speed"
+                  class="inputInput"
+                  v-model="speed"
+                  type="number"
+                  min="100"
+                  max="1000"
+                />
+                <button class="btn" @click="stopAnim">
+                  <font-awesome-icon icon="fa-solid fa-stop" />
+                </button>
+                <button class="btn" @click="playAnim">
+                  <font-awesome-icon icon="fa-solid fa-play" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div v-if="char !== null">
         <div class="frameContainer">
           <div
             class="frameview sharp"
@@ -114,14 +126,13 @@
         </div>
         <div
           class="frameContainer"
-          style="overflow-x: auto; display: flex; padding: 0px 10px"
+          style="overflow-x: auto; display: flex; align-items: center; padding: 0px 10px"
         >
           <div v-for="(f, index) in frames" :key="index">
             <div
               class="frame sharp"
               :class="{
                 flip: char?.reverse,
-                selected: index === selectedFrame,
               }"
               :id="`fr${char?.pos}`"
               @click="selectFrame(index)"
@@ -175,15 +186,16 @@ export default defineComponent({
   name: "animationCreator",
   setup: () => {
     const game = useGlobalStore();
-    const char = ref(game.characters[0]);
     const selectedFrame = ref(0);
     const speed = ref(150);
     const frames = ref([]);
+    const chars = ref(game.characters);
+    const char = ref(null);
     const frame = ref({
-      x: 229,
-      y: 228,
-      w: 25,
-      h: 30,
+      x: 0,
+      y: 0,
+      w: 40,
+      h: 40,
       xo: 0,
       yo: 0,
       filter: null,
@@ -298,7 +310,6 @@ export default defineComponent({
 
     return {
       game,
-      char,
       selectedFrame,
       frames,
       framesExpanded,
@@ -318,6 +329,8 @@ export default defineComponent({
       stopAnim,
       sounds,
       effects,
+      char,
+      chars,
     };
   },
 });
@@ -344,9 +357,6 @@ export default defineComponent({
 .full {
   width: 100%;
   height: 120px;
-}
-.selected {
-  border: 1px solid black;
 }
 .inputForm {
   padding: 15px;
@@ -384,6 +394,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  position: absolute;
 }
 .iconBtn {
   margin-right: 10px;
