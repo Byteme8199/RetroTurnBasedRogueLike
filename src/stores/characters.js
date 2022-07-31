@@ -144,8 +144,7 @@ export let characters = [
     fileName: "x",
     isRecruited: true,
     isBackrow: false,
-    reverse: 2.7,
-    offset: "-2.7, 2.7",
+    offset: 2.7,
     pos: 0,
     nextTurn: 100,
     speed: 280,
@@ -176,11 +175,11 @@ export let characters = [
     animations: [
       {
         name: "idle",
-        frames: [{"x":402,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+        frames: [{"x":2408,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
       },
       {
         name: "walk_in",
-        frames: [{"x":3,"y":14,"w":12,"h":50,"xo":9,"yo":-15,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":"MMX - X Fade In.wav"},{"x":18,"y":33,"w":24,"h":31,"xo":2,"yo":2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":46,"y":21,"w":31,"h":42,"xo":0,"yo":-8,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":84,"y":24,"w":31,"h":39,"xo":0,"yo":-5,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":120,"y":27,"w":31,"h":36,"xo":0,"yo":-2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":156,"y":29,"w":31,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":191,"y":31,"w":30,"h":32,"xo":0,"yo":2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":226,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":261,"y":29,"w":29,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":295,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":330,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":365,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":402,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+        frames: [{"x":2825,"y":14,"w":12,"h":50,"xo":9,"yo":-17,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":"MMX - X Fade In.wav"},{"x":2798,"y":33,"w":24,"h":31,"xo":2,"yo":2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2764,"y":21,"w":31,"h":42,"xo":0,"yo":-4,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2690,"y":24,"w":31,"h":39,"xo":0,"yo":-3,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2653,"y":27,"w":31,"h":36,"xo":0,"yo":-2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2619,"y":29,"w":31,"h":34,"xo":0,"yo":-1,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2584,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2549,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2516,"y":29,"w":29,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2480,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2445,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":2408,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
       },
       {
         name: "damage",
@@ -240,7 +239,7 @@ export let characters = [
       },
       {
         name: "walk_in",
-        frames: [{"x":7,"y":59,"w":13,"h":24,"xo":-60,"yo":0},{"x":23,"y":59,"w":13,"h":24,"xo":-50,"yo":0},{"x":41,"y":59,"w":21,"h":24,"xo":-40,"yo":0},{"x":65,"y":59,"w":16,"h":24,"xo":-30,"yo":0},{"x":84,"y":59,"w":14,"h":24,"xo":-20,"yo":0},{"x":102,"y":59,"w":19,"h":24,"xo":-10,"yo":0},{"x":127,"y":59,"w":14,"h":24,"xo":0,"yo":0},{"x":156,"y":59,"w":23,"h":24,"xo":-6,"yo":-1},{"x":183,"y":59,"w":22,"h":24,"xo":-3,"yo":0},{"x":208,"y":59,"w":29,"h":24,"xo":2,"yo":0,"playSound":"ct-draw.ogg"},{"x":241,"y":59,"w":24,"h":24,"xo":0,"yo":0,"repeat":false}],
+        frames: [{"x":7,"y":59,"w":13,"h":24,"xo":-60,"yo":0},{"x":23,"y":59,"w":15,"h":24,"xo":-50,"yo":0},{"x":41,"y":59,"w":21,"h":24,"xo":-40,"yo":0},{"x":65,"y":59,"w":16,"h":24,"xo":-30,"yo":0},{"x":84,"y":59,"w":14,"h":24,"xo":-20,"yo":0},{"x":102,"y":59,"w":19,"h":24,"xo":-10,"yo":0},{"x":127,"y":59,"w":14,"h":24,"xo":0,"yo":0},{"x":156,"y":59,"w":23,"h":24,"xo":-6,"yo":-1},{"x":183,"y":59,"w":22,"h":24,"xo":-3,"yo":0},{"x":206,"y":59,"w":31,"h":24,"xo":2,"yo":0,"playSound":"ct-draw.ogg"},{"x":241,"y":59,"w":24,"h":24,"xo":0,"yo":0,"repeat":false}],
       },
       {
         name: "damage",

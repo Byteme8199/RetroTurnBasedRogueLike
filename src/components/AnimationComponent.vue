@@ -193,32 +193,18 @@
         </div>
       </div>
       <div>
-        <div
-          class="frameContainer"
-          style="position: relative; overflow: hidden"
-          :class="{ flip: state.char?.reverse }"
-        >
+        <div class="frameContainer" style="position: relative; overflow: hidden">
           <div
             :style="{
               background: `url(./sprites/${state.char?.fileName}/${state.char?.fileName}.png)`,
-              zoom: `${state.char?.reverse ? state.char?.reverse : state.char?.offset}`,
-              width: `${
-                state.char?.reverse
-                  ? 1220 / state.char?.reverse
-                  : 1220 / state.char?.offset
-              }px`,
-              height: `${
-                state.char?.reverse ? 243 / state.char?.reverse : 243 / state.char?.offset
-              }px`,
+              zoom: `${state.char?.offset}`,
+              width: `${1220 / state.char?.offset}px`,
+              height: `${243 / state.char?.offset}px`,
               backgroundPositionX: `${
-                state.char?.reverse
-                  ? 1220 / state.char?.reverse / 2 - state.frame.w / 2 - state.frame.x + 1
-                  : 1220 / state.char?.offset / 2 - state.frame.w / 2 - state.frame.x + 1
+                1220 / state.char?.offset / 2 - state.frame.w / 2 - state.frame.x + 1
               }px`,
               backgroundPositionY: `${
-                state.char?.reverse
-                  ? 243 / state.char?.reverse / 2 - state.frame.h / 2 - state.frame.y + 1
-                  : 243 / state.char?.offset / 2 - state.frame.h / 2 - state.frame.y + 1
+                243 / state.char?.offset / 2 - state.frame.h / 2 - state.frame.y + 1
               }px`,
               backgroundRepeat: 'repeat',
             }"
@@ -230,16 +216,8 @@
               :style="{
                 width: state.frame.w + 'px',
                 height: state.frame.h + 'px',
-                left: `${
-                  state.char?.reverse
-                    ? 1220 / state.char?.reverse / 2 - state.frame.w / 2
-                    : 1220 / state.char?.offset / 2 - state.frame.w / 2
-                }px`,
-                top: `${
-                  state.char?.reverse
-                    ? 243 / state.char?.reverse / 2 - state.frame.h / 2
-                    : 243 / state.char?.offset / 2 - state.frame.h / 2
-                }px`,
+                left: `${1220 / state.char?.offset / 2 - state.frame.w / 2}px`,
+                top: `${243 / state.char?.offset / 2 - state.frame.h / 2}px`,
               }"
             ></div>
           </div>
@@ -249,9 +227,8 @@
             v-for="(f, index) in state.frames"
             :key="index"
             class="framePreviewContainer"
-            :class="{ flip: state.char?.reverse }"
             :style="{
-              zoom: state.char?.reverse ? state.char?.reverse : state.char?.offset,
+              zoom: state.char?.offset,
             }"
           >
             <div
@@ -260,7 +237,7 @@
               @click="selectFrame(index)"
               :style="{
                 marginTop: f?.yo + 'px',
-                background: `url(./sprites/${state.char?.fileName}/${state.char?.fileName}.png)  no-repeat`,
+                background: `url(./sprites/${state.char?.fileName}/${state.char?.fileName}.png)  `,
                 backgroundPosition: `-${f?.x}px -${f?.y}px`,
                 width: f?.w + 'px',
                 height: f?.h + 'px',
@@ -431,7 +408,7 @@ export default defineComponent({
           let el = document.getElementById("anim_pos" + char.pos);
           let fr = frames[index];
           if (el) {
-            el.style.background = `url(./sprites/${this.state.char?.fileName}/${this.state.char?.fileName}.png)  no-repeat`;
+            el.style.background = `url(./sprites/${this.state.char?.fileName}/${this.state.char?.fileName}.png)`;
             el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
             el.style.transform = `scale(${this.state.char?.offset})`;
             el.style.width = fr.w + "px";

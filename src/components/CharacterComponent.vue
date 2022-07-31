@@ -6,7 +6,7 @@
     :style="{
       right: char?.isBackrow ? '40px' : '120px',
       top: char?.pos * 65 + 300 + 'px',
-      background: `url(./sprites/${char?.fileName}/${char?.fileName}.png)  no-repeat`,
+      background: `url(./sprites/${char?.fileName}/${char?.fileName}.png)`,
       transform: `scale(${char?.offset})`,
     }"
   ></div>
