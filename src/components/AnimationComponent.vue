@@ -140,6 +140,11 @@
                   {{ sound }}
                 </option>
               </select>
+              <font-awesome-icon
+                class="btn"
+                @click="playSoundNow"
+                icon="fa-solid fa-play"
+              />
             </div>
 
             <div class="inputRow">
@@ -878,6 +883,10 @@ export default defineComponent({
       this.state.frames = [...newFrames];
     }
 
+    function playSoundNow() {
+      game.playSound(state.frame.playSound);
+    }
+
     return {
       state,
       game,
@@ -892,6 +901,7 @@ export default defineComponent({
       moveFrameRight,
       selectFrame,
       animateSprite,
+      playSoundNow,
       changeAnim,
     };
   },
