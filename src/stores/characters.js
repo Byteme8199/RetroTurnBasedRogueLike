@@ -4,17 +4,18 @@ export let characters = [
     fileName: "locke",
     isRecruited: true,
     isBackrow: true,
-    pos: null,
+    pos: 1,
+    offset: 3.7,
     nextTurn: 100,
-    speed: 29,
+    speed: 290,
     phys: 20,
     mag: 10,
     level: 1,
     exp: 0,
     hpMax: 100,
-    hpCurrent: 0,
-    mpMax: 0,
-    mpCurrent: 0,
+    hpCurrent: 100,
+    mpMax: 20,
+    mpCurrent: 10,
     wpn: null,
     head: null,
     armor: null,
@@ -29,6 +30,28 @@ export let characters = [
       [1, 1, 3, 1, 100],
       [2, 1, 4, 2, 250],
       [3, 2, 5, 3, 600],
+    ],
+    animations: [
+      {
+        name: "idle",
+        frames: [{"x":26,"y":67,"w":15,"h":23,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+      },
+      {
+        name: "walk_in",
+        frames: [{"x":7,"y":67,"w":16,"h":23,"xo":-60,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":67,"w":15,"h":23,"xo":-50,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":67,"w":15,"h":23,"xo":-40,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":67,"w":15,"h":23,"xo":-30,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":7,"y":67,"w":16,"h":23,"xo":-20,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":67,"w":15,"h":23,"xo":-10,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":67,"w":15,"h":23,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":67,"w":15,"h":23,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+      },
+      {
+        name: "damage",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
+      {
+        name: "fight",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
+      {
+        name: "death",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
     ],
   },
   {
@@ -67,7 +90,8 @@ export let characters = [
     fileName: "rydia",
     isRecruited: true,
     isBackrow: true,
-    pos: null,
+    pos: 3,
+    offset: 3.2,
     nextTurn: 100,
     speed: 3,
     phys: 2,
@@ -92,14 +116,35 @@ export let characters = [
       [2, 1, 1, 5, 250],
       [3, 2, 2, 6, 600],
     ],
+    animations: [
+      {
+        name: "idle",
+        frames: [{"x":26,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+      },
+      {
+        name: "walk_in",
+        frames: [{"x":7,"y":70,"w":16,"h":24,"xo":-60,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-50,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":-40,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-30,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":7,"y":70,"w":16,"h":24,"xo":-20,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-10,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+      },
+      {
+        name: "damage",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
+      {
+        name: "fight",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
+      {
+        name: "death",
+        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+      },
+    ],
   },
   {
     name: "X",
     fileName: "x",
     isRecruited: true,
     isBackrow: false,
-    reverse: true,
-    offset: 3,
+    offset: "-2.7, 2.7",
     pos: 0,
     nextTurn: 100,
     speed: 280,
@@ -129,6 +174,10 @@ export let characters = [
     ],
     animations: [
       {
+        name: "idle",
+        frames: [{"x":402,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+      },
+      {
         name: "walk_in",
         frames: [{"x":3,"y":14,"w":12,"h":50,"xo":9,"yo":-15,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":"MMX - X Fade In.wav"},{"x":18,"y":33,"w":24,"h":31,"xo":2,"yo":2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":46,"y":21,"w":31,"h":42,"xo":0,"yo":-8,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":84,"y":24,"w":31,"h":39,"xo":0,"yo":-5,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":120,"y":27,"w":31,"h":36,"xo":0,"yo":-2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":156,"y":29,"w":31,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":191,"y":31,"w":30,"h":32,"xo":0,"yo":2,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":226,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":261,"y":29,"w":29,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":295,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":330,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":365,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":true,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":402,"y":29,"w":30,"h":34,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
       },
@@ -138,7 +187,7 @@ export let characters = [
       },
       {
         name: "fight",
-        frames: [{ x: 229, y: 228, w: 25, h: 30, xo: 0, yo: 0 }],
+        frames: [{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(120%)","playSound":"MMX - X Charge + Shot.wav"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(140%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(160%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(180%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(200%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(220%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(240%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(250%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(200%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(250%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(200%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(250%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(200%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(250%)"},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0,"filter":"brightness(200%)"},{"x":402,"y":27,"w":31,"h":36,"xo":0,"yo":0,"repeat":false,"filter":"brightness(150%"},{"x":402,"y":27,"w":31,"h":36,"xo":0,"yo":0,"repeat":false,"filter":"brightness(120%"},{"x":402,"y":27,"w":31,"h":36,"xo":0,"yo":0,"repeat":false},{"x":365,"y":27,"w":31,"h":36,"xo":0,"yo":0}],
       },
       {
         name: "death",
@@ -151,9 +200,8 @@ export let characters = [
     fileName: "frog",
     isRecruited: true,
     isBackrow: false,
-    reverse: false,
-    offset: 3.3,
-    pos: 1,
+    offset: 3,
+    pos: 2,
     nextTurn: 10,
     speed: 28,
     phys: 28,
@@ -185,6 +233,10 @@ export let characters = [
       [3, 2, 2, 6, 600],
     ],
     animations: [
+      {
+        name: "idle",
+        frames: [{"x":241,"y":59,"w":24,"h":24,"xo":0,"yo":0,"repeat":false}],
+      },
       {
         name: "walk_in",
         frames: [{"x":7,"y":59,"w":13,"h":24,"xo":-60,"yo":0},{"x":23,"y":59,"w":13,"h":24,"xo":-50,"yo":0},{"x":41,"y":59,"w":21,"h":24,"xo":-40,"yo":0},{"x":65,"y":59,"w":16,"h":24,"xo":-30,"yo":0},{"x":84,"y":59,"w":14,"h":24,"xo":-20,"yo":0},{"x":102,"y":59,"w":19,"h":24,"xo":-10,"yo":0,},{"x":127,"y":59,"w":14,"h":24,"xo":0,"yo":0},{"x":156,"y":59,"w":23,"h":24,"xo":-6,"yo":0},{"x":183,"y":59,"w":22,"h":24,"xo":-3,"yo":0},{"x":208,"y":59,"w":29,"h":24,"xo":2,"yo":0,"playSound":"ct-draw.ogg"},{"x":241,"y":59,"w":24,"h":24,"xo":0,"yo":0,"repeat":false}],

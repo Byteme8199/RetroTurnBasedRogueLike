@@ -254,8 +254,8 @@ export const useGlobalStore = defineStore({
         el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
         el.style.width = fr.w + "px";
         el.style.height = fr.h + "px";
-        el.style.right = char.isBackrow ? 10 + fr.xo + "px" : 40 + fr.xo + "px";
-        el.style.top = char?.pos * 20 + 85 + fr.yo + "px";
+        el.style.right = char?.isBackrow ? 40 + fr.xo + "px" : 120 + fr.xo + "px";
+        el.style.top = char?.pos * 65 + 300 + fr.yo + "px";
         el.style.filter = fr?.filter ? fr.filter : "";
         if (fr.playSound) {
           this.playSound(fr.playSound);
@@ -368,6 +368,7 @@ export const useGlobalStore = defineStore({
       if (act && char && this.game.gameState && char.hpCurrent > 0) {
         if (act.label === "Change Row") {
           char.isBackrow = !char.isBackrow;
+          this.animate(char, "idle");
         }
         if (act.label === "Fight") {
           // Let's attack a random enemy

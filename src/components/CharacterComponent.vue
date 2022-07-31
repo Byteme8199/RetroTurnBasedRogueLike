@@ -2,13 +2,12 @@
   <div
     v-if="char?.name"
     class="character-sprite sharp"
-    :class="{ flip: char?.reverse }"
     :id="`pos${char?.pos}`"
     :style="{
-      right: char?.isBackrow ? '10px' : '40px',
-      top: char?.pos * 20 + 85 + 'px',
+      right: char?.isBackrow ? '40px' : '120px',
+      top: char?.pos * 65 + 300 + 'px',
       background: `url(./sprites/${char?.fileName}/${char?.fileName}.png)  no-repeat`,
-      zoom: char?.offset ? char?.offset : 4,
+      transform: `scale(${char?.offset})`,
     }"
   ></div>
 </template>

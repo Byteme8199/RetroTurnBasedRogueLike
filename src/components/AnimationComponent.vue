@@ -852,8 +852,8 @@ export default defineComponent({
           let fr = frames[index];
           if (el) {
             el.style.background = `url(./sprites/${this.state.char?.fileName}/${this.state.char?.fileName}.png)  no-repeat`;
-            el.style.zoom = this.state.char?.offset ? this.state.char?.offset : 4;
             el.style.backgroundPosition = `-${fr.x}px -${fr.y}px`;
+            el.style.transform = `scale(${this.state.char?.offset})`;
             el.style.width = fr.w + "px";
             el.style.height = fr.h + "px";
             el.style.right = fr.xo + 20 + "px";
