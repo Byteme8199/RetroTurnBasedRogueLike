@@ -17,7 +17,7 @@ export const useGlobalStore = defineStore({
       },
     },
     game: {
-      mode: "game",
+      mode: "menu",
       moment: 0,
       wave: 0,
       round: 0,
@@ -27,6 +27,20 @@ export const useGlobalStore = defineStore({
       timerStateVal: null,
       logs: [{ text: "", level: "Log" }],
     },
+    music_Battle: [
+      "CT-Battle.mp3",
+      "CT-Magus.mp3",
+      "DKC-Boss.mp3",
+      "FF4-4fiends.mp3",
+      "FF4-battle.mp3",
+      "FF5-BigBridge.mp3",
+      "FF6-DancingMad.mp3",
+      "MegaMan-Wily1.mp3",
+      "SMW-Koopa.mp3",
+      "SOTN-EndToccata.mp3",
+      "SoM-BossBattle.mp3",
+    ],
+    music_Victory: ["FF-Victory.mp3", "SoM-BossDefeat.mp3"],
   }),
   getters: {
     getMoment: (state) => {
@@ -123,23 +137,25 @@ export const useGlobalStore = defineStore({
       this.game.wave = wave;
       this.game.round = round;
     },
+    setModeMenu() {
+      this.log("Menu Start", "Log");
+      this.game.mode = "menu";
+      this.reset();
+    },
     setModeAnim() {
-      console.log("Animation Mode Start");
       this.log("Animation Mode Start", "Log");
       this.game.mode = "anim";
       this.reset();
     },
     setModeGame() {
-      console.log("Game Mode Start");
-      this.log("Game Mode Start", "Log");
       this.game.mode = "game";
+      this.log("Game Mode Start", "Log");
       this.initGame();
     },
     initGame() {
       this.log("Game Init", "Log");
       this.reset();
       this.start();
-      // TODO: Eventually need a menu screen and some sort of game options and states for loading and whatever.
       this.getValidCharacterTargets.map((c) => {
         this.animate(c, "walk_in");
       });
@@ -148,6 +164,13 @@ export const useGlobalStore = defineStore({
       this.log("Game Start", "Log");
       this.game.gameState = true;
       this.game.timerStateVal = setInterval(this.updateGame, 100);
+      ///  Play Random Battle Music
+      var musicTrack = document.getElementById("audio");
+      musicTrack.setAttribute(
+        "src",
+        `music/${this.music_Battle[Math.floor(Math.random() * this.music_Battle.length)]}`
+      );
+      musicTrack.play();
     },
     reset() {
       // Get a reference to the last interval + 1
@@ -167,12 +190,18 @@ export const useGlobalStore = defineStore({
       this.getActiveEnemies.map((c) => {
         c.nextTurn = 100;
       });
+      this.audioStop();
+    },
+    audioStop() {
+      var musicTrack = document.getElementById("audio");
+      musicTrack.pause();
     },
     pause() {
       if (this.game.gameState) {
         this.log("Game Paused", "Log");
         this.game.gameState = false;
         clearInterval(this.game.timerStateVal);
+        this.audioStop();
       } else {
         this.start();
       }
@@ -202,7 +231,6 @@ export const useGlobalStore = defineStore({
       this.act.selectedAction = null;
     },
     getAnimationByName(char, name) {
-      console.log(name, char.name);
       const index = char.animations.findIndex((anim) => {
         return anim.name === name;
       });

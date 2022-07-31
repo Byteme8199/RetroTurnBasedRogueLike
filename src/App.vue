@@ -1,5 +1,6 @@
 <template>
   <RouterView />
+  <audio id="audio"></audio>
 </template>
 
 <style>

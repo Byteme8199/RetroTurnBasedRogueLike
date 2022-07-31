@@ -1,6 +1,9 @@
 <template>
   <main>
-    <div v-if="game.getMode === 'game'">
+    <div v-show="game.getMode === 'menu'">
+      <button class="btn" @click="game.setModeGame">Play Game</button>
+    </div>
+    <div v-show="game.getMode === 'game'">
       <div class="timeline">
         <span class="timeline-line"></span>
         <timeline-component
@@ -81,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div v-if="game.getMode === 'anim'">
+    <div v-show="game.getMode === 'anim'">
       <animation-component />
     </div>
   </main>
@@ -89,7 +92,7 @@
 
 <script lang="ts">
 import { useKeypress } from "vue3-keypress";
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 import { useGlobalStore } from "../stores/global";
 import CharacterComponent from "../components/CharacterComponent.vue";
 import EnemyComponent from "../components/EnemyComponent.vue";
@@ -172,10 +175,6 @@ export default defineComponent({
           success: game.setModeGame,
         },
       ],
-    });
-
-    onMounted(() => {
-      game.initGame();
     });
 
     return {
