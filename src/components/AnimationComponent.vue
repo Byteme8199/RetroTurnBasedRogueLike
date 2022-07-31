@@ -193,21 +193,56 @@
         </div>
       </div>
       <div>
-        <div class="frameContainer">
+        <div
+          class="frameContainer"
+          style="position: relative; overflow: hidden"
+          :class="{ flip: state.char?.reverse }"
+        >
           <div
-            class="frameview sharp"
-            :id="`frame${state.char?.pos}`"
             :style="{
-              background: `url(./sprites/${state.char?.fileName}/${state.char?.fileName}.png)  no-repeat`,
-              transform: `scale(${state.char?.offset})`,
-              backgroundPosition: `-${state.frame.x}px -${state.frame.y}px`,
-              width: state.frame.w + 'px',
-              height: state.frame.h + 'px',
-              right: state.frame.xo + 90 + 'px',
-              top: state.frame.yo + 90 + 'px',
-              filter: state.frame.filter ? state.frame.filter : '',
+              background: `url(./sprites/${state.char?.fileName}/${state.char?.fileName}.png)`,
+              zoom: `${state.char?.reverse ? state.char?.reverse : state.char?.offset}`,
+              width: `${
+                state.char?.reverse
+                  ? 1220 / state.char?.reverse
+                  : 1220 / state.char?.offset
+              }px`,
+              height: `${
+                state.char?.reverse ? 243 / state.char?.reverse : 243 / state.char?.offset
+              }px`,
+              backgroundPositionX: `${
+                state.char?.reverse
+                  ? 1220 / state.char?.reverse / 2 - state.frame.w / 2 - state.frame.x + 1
+                  : 1220 / state.char?.offset / 2 - state.frame.w / 2 - state.frame.x + 1
+              }px`,
+              backgroundPositionY: `${
+                state.char?.reverse
+                  ? 243 / state.char?.reverse / 2 - state.frame.h / 2 - state.frame.y + 1
+                  : 243 / state.char?.offset / 2 - state.frame.h / 2 - state.frame.y + 1
+              }px`,
+              backgroundRepeat: 'repeat',
             }"
-          ></div>
+            style="image-rendering: pixelated"
+          >
+            <div
+              class="frameview sharp"
+              :id="`frame${state.char?.pos}`"
+              :style="{
+                width: state.frame.w + 'px',
+                height: state.frame.h + 'px',
+                left: `${
+                  state.char?.reverse
+                    ? 1220 / state.char?.reverse / 2 - state.frame.w / 2
+                    : 1220 / state.char?.offset / 2 - state.frame.w / 2
+                }px`,
+                top: `${
+                  state.char?.reverse
+                    ? 243 / state.char?.reverse / 2 - state.frame.h / 2
+                    : 243 / state.char?.offset / 2 - state.frame.h / 2
+                }px`,
+              }"
+            ></div>
+          </div>
         </div>
         <div class="frameContainer flex-center pa-2">
           <div
