@@ -123,7 +123,7 @@ export let characters = [
       },
       {
         name: "walk_in",
-        frames: [{"x":7,"y":70,"w":16,"h":24,"xo":-60,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-50,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":-40,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-30,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":7,"y":70,"w":16,"h":24,"xo":-20,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-10,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
+        frames: [{"x":7,"y":70,"w":16,"h":24,"xo":-60,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-50,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":-40,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-30,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":7,"y":70,"w":16,"h":24,"xo":-20,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":26,"y":70,"w":15,"h":24,"xo":-10,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":45,"y":70,"w":15,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null},{"x":7,"y":70,"w":16,"h":24,"xo":0,"yo":0,"filter":null,"repeat":false,"effectAnim":null,"effectAnimX":null,"effectAnimY":null,"playSound":null}],
       },
       {
         name: "damage",
@@ -144,6 +144,7 @@ export let characters = [
     fileName: "x",
     isRecruited: true,
     isBackrow: false,
+    reverse: 2.7,
     offset: "-2.7, 2.7",
     pos: 0,
     nextTurn: 100,

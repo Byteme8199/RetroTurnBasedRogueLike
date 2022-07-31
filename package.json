@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "deploy": "npm run build && gh-pages -d dist",
-    "serve": "vite preview --port 4173",
+    "serve": "vite",
+    "serve_web": "vite preview --port 4173",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {

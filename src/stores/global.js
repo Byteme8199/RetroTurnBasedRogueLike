@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { characters } from "./characters";
+import { sounds } from "./sounds";
 import { waves } from "./waves";
 import { formations } from "./waves";
 
@@ -8,6 +9,7 @@ export const useGlobalStore = defineStore({
   state: () => ({
     characters: characters,
     enemies: waves[0].formations[0].enemies,
+    sounds: sounds,
     act: {
       selectedCharacter: null,
       selectedAction: {
