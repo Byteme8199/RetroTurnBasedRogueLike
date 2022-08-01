@@ -222,7 +222,7 @@
             ></div>
           </div>
         </div>
-        <div class="frameContainer flex-center pa-2">
+        <div class="frameContainer flex-center pa-2" style="overflow: auto">
           <div
             v-for="(f, index) in state.frames"
             :key="index"
